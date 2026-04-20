@@ -7,7 +7,9 @@ import Login from '../views/LoginView.vue'
 import Register from '../views/register.vue'
 import TrainerDetail from '../views/TrainerDetail.vue'
 import DashboardView from '../views/dashboard/DashboardView.vue'
-import FindPartner from "../views/dashboard/FindPartner.vue"
+import FindTrainers from '../views/dashboard/FindTrainers.vue'
+import MyBookings from '../views/dashboard/MyBookings.vue'
+import FindPartners from '../views/dashboard/FindPartners.vue'
 
 const routes = [
   { path: '/', component: Home },
@@ -17,7 +19,9 @@ const routes = [
   { path: '/register', component: Register},
   { path: '/trainer/:id', component: TrainerDetail },
   { path: '/dashboard', component: DashboardView },
-  { path: '/partner', component: FindPartner }
+  { path: '/dashboard/find-trainers', component: FindTrainers },
+  { path: '/dashboard/my-bookings', component: MyBookings },
+  { path: '/dashboard/find-partners', component: FindPartners },
 ]
 
 export default createRouter({
