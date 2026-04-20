@@ -6,6 +6,7 @@ import Trainer from '../views/Trainer.vue'
 import Login from '../views/LoginView.vue'
 import Register from '../views/register.vue'
 import TrainerDetail from '../views/TrainerDetail.vue'
+import Profile from '../views/Profile.vue'
 
 
 const routes = [
@@ -15,6 +16,7 @@ const routes = [
   { path: '/login', component: Login},
   { path: '/register', component: Register},
   { path: '/trainer/:id', component: TrainerDetail },
+  { path: '/profile', component: Profile }
 
 ]
 
