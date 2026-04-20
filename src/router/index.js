@@ -5,6 +5,7 @@ import About from '../views/About.vue'
 import Trainer from '../views/Trainer.vue'
 import Login from '../views/LoginView.vue'
 import Register from '../views/register.vue'
+import TrainerDetail from '../views/TrainerDetail.vue'
 
 
 const routes = [
@@ -12,7 +13,8 @@ const routes = [
   { path: '/about', component: About },
   { path: '/trainer', component: Trainer },
   { path: '/login', component: Login},
-  { path: '/register', component: Register}
+  { path: '/register', component: Register},
+  { path: '/trainer/:id', component: TrainerDetail },
 
 ]
 
