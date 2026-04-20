@@ -9,6 +9,7 @@ import TrainerDetail from '../views/TrainerDetail.vue'
 import DashboardView from '../views/dashboard/DashboardView.vue'
 import FindTrainers from '../views/dashboard/FindTrainers.vue'
 import MyBookings from '../views/dashboard/MyBookings.vue'
+import PricingView from '../views/dashboard/PricingView.vue'
 
 const routes = [
   { path: '/', component: Home },
@@ -20,7 +21,11 @@ const routes = [
   { path: '/dashboard', component: DashboardView },
   { path: '/dashboard/find-trainers', component: FindTrainers },
   { path: '/dashboard/my-bookings',component: MyBookings },
+  { path: '/dashboard', component: () => import('../views/dashboard/DashboardView.vue') },
+  { path: '/dashboard/pricingview', component: PricingView}
 ]
+
+
 
 export default createRouter({
   history: createWebHistory(),
