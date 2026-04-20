@@ -25,7 +25,9 @@ const routes = [
   { path: '/dashboard/find-partners', component: FindPartners },
   { path: '/dashboard/my-bookings',component: MyBookings },
   { path: '/dashboard', component: () => import('../views/dashboard/DashboardView.vue') },
-  { path: '/dashboard/pricingview', component: PricingView}
+  { path: '/dashboard/pricingview', component: PricingView},
+  { path: '/dashboard/profile', component: () => import('../views/dashboard/profile.vue') },
+  { path: '/dashboard/profile/edit', component: () => import('../views/dashboard/EditProfileView.vue') }
 ]
 
 
