@@ -34,7 +34,7 @@ const route = useRoute()
                   ? 'text-green-400 font-semibold' 
                   : 'hover:text-gray-300 transition'"
               >
-                Berada
+                Beranda
               </router-link>
             </li>
 

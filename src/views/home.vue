@@ -62,7 +62,7 @@
     <!-- IMAGE -->
     <div class="relative">
       <img
-        src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b"
+        src="/src/assets/home-content.jpg"
         class="rounded-lg"
       />
 

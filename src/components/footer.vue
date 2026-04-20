@@ -22,6 +22,7 @@
           <ul class="space-y-2 text-sm">
             <li><router-link to="/" class="hover:text-white">Home</router-link></li>
             <li><router-link to="/about" class="hover:text-white">About</router-link></li>
+            <li><router-link to="/trainer" class="hover:text-white">Trainer</router-link></li>
           </ul>
         </div>
 
