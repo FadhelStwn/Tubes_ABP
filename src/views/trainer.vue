@@ -1,42 +1,8 @@
 <script setup>
-const trainers = [
-  {
-    id: 1,
-    name: "Amba Tron",
-    role: "Strength Coach",
-    img: "https://i.pinimg.com/736x/18/a1/86/18a186799d44b8999e5750df84643749.jpg"
-  },
-  {
-    id: 2,
-    name: "Imoet Sasimok",
-    role: "Fat Loss Expert",
-    img: "https://i.pinimg.com/736x/01/6a/5a/016a5a184a4f6403db70327392b4c5bb.jpg"
-  },
-  {
-    id: 3,
-    name: "Fuad Sparta",
-    role: "Yoga Specialist",
-    img: "https://i.pinimg.com/736x/3b/59/66/3b5966e89d0d503fc478a4d0553c0e42.jpg"
-  },
-  {
-    id: 4,
-    name: "Mas Ironi",
-    role: "Personal Trainer",
-    img: "https://i.pinimg.com/736x/6b/0b/3b/6b0b3b273446db32253cc0b259ffe4aa.jpg"
-  },
-  {
-    id: 5,
-    name: "Rusdi Icikiwir",
-    role: "Bodybuilding Coach",
-    img: "https://i.pinimg.com/736x/57/9a/a4/579aa4eccb2080c5cdc9939b39ce03a2.jpg"
-  },
-  {
-    id: 6,
-    name: "Riko Racing",
-    role: "Pilates Instructor",
-    img: "https://images.unsplash.com/photo-1599058917212-d750089bc07e"
-  }
-]
+import { useTrainerStore } from '../stores/trainer'
+
+const store = useTrainerStore()
+const trainers = store.trainers
 </script>
 
 <template>
@@ -147,12 +113,13 @@ const trainers = [
               {{ trainer.role }}
             </p>
 
-            <button 
+            <router-link
+            :to="`/trainer/${trainer.id}`"
               class="px-4 py-2 border border-green-400 text-green-400 
                      rounded-full text-sm hover:bg-green-400 hover:text-black transition"
             >
               View Profile
-            </button>
+            </router-link>
 
           </div>
 

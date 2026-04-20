@@ -1,3 +1,7 @@
+<script setup>
+import aboutImg from '../assets/about-conten.jpg'
+</script>
+
 <template>
   <div class="bg-black text-white">
 
@@ -71,10 +75,8 @@
 
         <!-- IMAGE -->
         <div>
-          <img 
-            src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b"
-            class="rounded-lg"
-          />
+          <img :src="aboutImg"
+            class="rounded-lg brightness-50"/>
         </div>
 
       </div>
