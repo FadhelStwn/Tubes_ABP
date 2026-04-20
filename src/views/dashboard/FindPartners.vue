@@ -77,18 +77,19 @@
             </span>
           </div>
 
-          <button 
-            @click="partner.connected = !partner.connected"
-            :class="[
-              'w-full py-3 font-black uppercase text-xs rounded-xl transition-all active:scale-[0.98]',
-              partner.connected 
-                ? 'bg-white/5 text-gray-500 border border-white/10 hover:bg-white/10' 
-                : 'bg-green-400 text-black hover:bg-green-300 shadow-lg shadow-green-400/10'
-            ]"
-          >
-            {{ partner.connected ? 'View Profile' : 'Connect Partner' }}
-          </button>
+        <router-link 
+          v-if="partner.connected"
+          :to="{ name: 'PartnerDetail', params: { id: partner.id } }" 
+          class="w-full block text-center py-3 font-black uppercase text-xs rounded-xl bg-white/5 text-gray-500 border border-white/10 hover:bg-white/10 transition-all">
+          View Profile
+        </router-link>
 
+        <button 
+          v-else
+          @click="partner.connected = true"
+          class="w-full py-3 font-black uppercase text-xs rounded-xl bg-green-400 text-black hover:bg-green-300 shadow-lg shadow-green-400/10 transition-all active:scale-[0.98]">
+           Connect Partner
+        </button>
           <div class="absolute -right-4 -bottom-4 w-24 h-24 bg-green-400/5 blur-3xl rounded-full"></div>
         </div>
       </div>
