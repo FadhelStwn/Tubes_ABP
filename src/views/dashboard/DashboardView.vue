@@ -16,9 +16,13 @@
           </h3>
           <p class="text-gray-300 text-sm max-w-md">Unlock unlimited bookings, priority access to top trainers, advanced analytics, and exclusive community features.</p>
           <button class="mt-4 bg-orange-600 text-white px-6 py-2 rounded-xl text-xs font-bold hover:bg-orange-500 hover:scale-105 transition-all shadow-lg shadow-orange-900/20">
-            View Plans
-          </button>
+          
+        <router-link to="/dashboard/PricingView">
+         View Plans
+        </router-link>          
+        </button>
         </div>
+        
         <div class="text-orange-900/20 text-8xl font-black absolute -right-4 -bottom-4 group-hover:rotate-12 transition-transform duration-500">
           👑
         </div>

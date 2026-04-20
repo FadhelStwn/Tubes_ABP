@@ -52,6 +52,11 @@ import { useRouter } from 'vue-router'
 const router = useRouter()
 
 const handleLogin = () => {
-  alert('Proses login ke backend...')
+  // 1. Logika validasi login kamu di sini (misal cek email/password)
+  console.log("Login berhasil!")
+
+  // 2. Arahkan ke dashboard
+  // Pastikan '/dashboard' sesuai dengan path yang ada di router/index.js
+  router.push('/dashboard')
 }
 </script>

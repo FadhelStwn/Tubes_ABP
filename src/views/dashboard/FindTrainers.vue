@@ -32,7 +32,7 @@
           <div class="flex justify-between items-start mb-6">
             <div class="flex items-center gap-4">
               <div class="w-14 h-14 bg-green-400 rounded-2xl flex items-center justify-center text-black font-black text-xl shadow-lg shadow-green-400/20">
-                {{ trainer.initials }}
+                <img :src="trainer.image" alt="Trainer" class="w-full h-full object-cover" />
               </div>
               <div>
                 <h4 class="font-bold text-lg group-hover:text-green-400 transition-colors">{{ trainer.name }}</h4>
@@ -77,8 +77,8 @@ import DashboardSidebar from '../../components/DashboardSidebar.vue'
 const trainers = [
   {
     id: 1,
-    name: 'David Martinez',
-    initials: 'DM',
+    name: 'Amba Tron',
+    image:'https://i.pinimg.com/736x/18/a1/86/18a186799d44b8999e5750df84643749.jpg',
     specialty: 'Strength & Conditioning',
     rating: 4.9,
     reviews: 127,
@@ -89,8 +89,8 @@ const trainers = [
   },
   {
     id: 2,
-    name: 'Lisa Anderson',
-    initials: 'LA',
+    name: 'Imoet Sasimok',
+    image:'https://i.pinimg.com/736x/01/6a/5a/016a5a184a4f6403db70327392b4c5bb.jpg',
     specialty: 'HIIT & Cardio',
     rating: 4.8,
     reviews: 94,
@@ -101,8 +101,8 @@ const trainers = [
   },
   {
     id: 3,
-    name: 'Chris Taylor',
-    initials: 'CT',
+    name: 'Fuad Sparta',
+    image:'https://i.pinimg.com/736x/3b/59/66/3b5966e89d0d503fc478a4d0553c0e42.jpg',
     specialty: 'Weight Loss',
     rating: 4.7,
     reviews: 84,
@@ -113,8 +113,32 @@ const trainers = [
   },
   {
     id: 4,
-    name: 'Nina Patel',
-    initials: 'NP',
+    name: 'Mas Ironi',
+    image:'https://i.pinimg.com/736x/6b/0b/3b/6b0b3b273446db32253cc0b259ffe4aa.jpg',
+    specialty: 'Yoga & Flexibility',
+    rating: 4.9,
+    reviews: 156,
+    price: 55,
+    location: 'Zen Space',
+    availability: 'Mon, Wed, Sat',
+    tags: ['Meditation', 'Balance']
+  },
+  {
+    id: 5,
+    name: 'Rusdi Icikiwir',
+    image:'https://i.pinimg.com/736x/57/9a/a4/579aa4eccb2080c5cdc9939b39ce03a2.jpg',
+    specialty: 'Yoga & Flexibility',
+    rating: 4.9,
+    reviews: 156,
+    price: 55,
+    location: 'Zen Space',
+    availability: 'Mon, Wed, Sat',
+    tags: ['Meditation', 'Balance']
+  },
+  {
+    id: 6,
+    name: 'Riko Racing',
+    image:'https://images.unsplash.com/photo-1599058917212-d750089bc07e',
     specialty: 'Yoga & Flexibility',
     rating: 4.9,
     reviews: 156,
@@ -123,5 +147,5 @@ const trainers = [
     availability: 'Mon, Wed, Sat',
     tags: ['Meditation', 'Balance']
   }
-]
+  ]
 </script>
