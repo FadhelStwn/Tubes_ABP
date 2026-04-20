@@ -36,9 +36,12 @@
         <span>Find Partners</span>
       </router-link>  
       
-      <a href="#" class="flex items-center gap-3.5 px-4 py-3 hover:text-white hover:bg-white/5 rounded-full text-sm transition">
-        <span class="text-lg"></span> <span>Progress</span>
-      </a>
+      <router-link to="/dashboard/progres" 
+        class="flex items-center gap-3.5 px-4 py-3 hover:text-white hover:bg-white/5 rounded-full transition text-sm"
+        active-class="bg-green-400/10 text-green-400 border border-green-400/20 font-medium shadow-lg shadow-green-400/5">
+        <span></span>
+        <span>Progres</span>
+      </router-link> 
       
       <router-link to="/dashboard/profile" 
         class="flex items-center gap-3.5 px-4 py-3 hover:text-white hover:bg-white/5 rounded-full transition text-sm"
@@ -55,8 +58,6 @@
     <span>Log out</span>
     </button>
     </div>  
-
-    
 
 </aside>
 </template>

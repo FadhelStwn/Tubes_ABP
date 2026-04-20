@@ -103,59 +103,5 @@ import aboutImg from '../assets/about-conten.jpg'
       </div>
     </section>
 
-    <!-- ================= TRAINERS ================= -->
-    <section class="bg-zinc-900 py-20">
-      <div class="max-w-6xl mx-auto px-6">
-
-        <h2 class="text-3xl font-bold text-center mb-12">
-          Meet Our Trainers
-        </h2>
-
-        <div class="grid md:grid-cols-3 gap-8">
-
-          <!-- CARD 1 -->
-          <div class="bg-black p-6 rounded-lg text-center">
-            <img 
-              src="https://images.unsplash.com/photo-1594737625785-c9e27c0c3b5e"
-              class="w-24 h-24 rounded-full mx-auto mb-4 object-cover"
-            />
-            <h3 class="font-semibold text-lg">Alex Carter</h3>
-            <p class="text-green-400 text-sm">Strength Coach</p>
-            <p class="text-gray-400 text-sm mt-3 italic">
-              "Consistency beats intensity."
-            </p>
-          </div>
-
-          <!-- CARD 2 -->
-          <div class="bg-black p-6 rounded-lg text-center">
-            <img 
-              src="https://images.unsplash.com/photo-1554284126-aa88f22d8b74"
-              class="w-24 h-24 rounded-full mx-auto mb-4 object-cover"
-            />
-            <h3 class="font-semibold text-lg">Sarah Lee</h3>
-            <p class="text-green-400 text-sm">Fat Loss Expert</p>
-            <p class="text-gray-400 text-sm mt-3 italic">
-              "Stay disciplined, results will follow."
-            </p>
-          </div>
-
-          <!-- CARD 3 -->
-          <div class="bg-black p-6 rounded-lg text-center">
-            <img 
-              src="https://images.unsplash.com/photo-1526401485004-2fa806b7f9b4"
-              class="w-24 h-24 rounded-full mx-auto mb-4 object-cover"
-            />
-            <h3 class="font-semibold text-lg">Michael Tan</h3>
-            <p class="text-green-400 text-sm">Yoga Specialist</p>
-            <p class="text-gray-400 text-sm mt-3 italic">
-              "Balance your body and mind."
-            </p>
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-
   </div>
 </template>

@@ -6,11 +6,14 @@ import Trainer from '../views/Trainer.vue'
 import Login from '../views/LoginView.vue'
 import Register from '../views/register.vue'
 import TrainerDetail from '../views/TrainerDetail.vue'
+
+// Dashboard views
 import DashboardView from '../views/dashboard/DashboardView.vue'
 import FindTrainers from '../views/dashboard/FindTrainers.vue'
 import MyBookings from '../views/dashboard/MyBookings.vue'
 import FindPartners from '../views/dashboard/FindPartners.vue'
 import PricingView from '../views/dashboard/PricingView.vue'
+import progres from '../views/dashboard/Progres.vue'
 
 const routes = [
   { path: '/', component: Home },
@@ -19,13 +22,16 @@ const routes = [
   { path: '/login', component: Login},
   { path: '/register', component: Register},
   { path: '/trainer/:id', component: TrainerDetail },
+
+  // Dashboard routes
   { path: '/dashboard', component: DashboardView },
   { path: '/dashboard/find-trainers', component: FindTrainers },
   { path: '/dashboard/my-bookings', component: MyBookings },
   { path: '/dashboard/find-partners', component: FindPartners },
   { path: '/dashboard/my-bookings',component: MyBookings },
   { path: '/dashboard', component: () => import('../views/dashboard/DashboardView.vue') },
-  { path: '/dashboard/pricingview', component: PricingView}
+  { path: '/dashboard/pricingview', component: PricingView},
+  { path: '/dashboard/progres', component: progres },
 ]
 
 

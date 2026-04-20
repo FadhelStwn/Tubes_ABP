@@ -26,11 +26,12 @@
             Temukan partner, jaga konsistensi.
           </p>
 
-          <button 
-            class="mt-6 bg-green-500 px-6 py-3 rounded-full
-                   font-semibold hover:bg-green-600 transition">
-            Gabung Sekarang
-          </button>
+          <router-link 
+          to="/login"
+          class="mt-6 inline-block bg-green-500 px-6 py-3 rounded-full
+          font-semibold hover:bg-green-600 transition">
+          Gabung Sekarang
+          </router-link>
 
         </div>
 
