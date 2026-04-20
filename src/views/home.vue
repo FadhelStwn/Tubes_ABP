@@ -54,9 +54,10 @@
         Kami membantu kamu tetap termotivasi dengan partner yang tepat.
       </p>
 
-      <button class="bg-green-500 px-5 py-2 rounded hover:bg-green-600 transition">
-        Read More
-      </button>
+      <router-link to="/about" 
+      class="bg-green-500 px-5 py-2 rounded hover:bg-green-600 transition inline-block">
+      Read More
+      </router-link>
     </div>
 
     <!-- IMAGE -->

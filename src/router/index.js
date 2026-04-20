@@ -7,6 +7,7 @@ import Login from '../views/LoginView.vue'
 import Register from '../views/register.vue'
 import TrainerDetail from '../views/TrainerDetail.vue'
 import DashboardView from '../views/dashboard/DashboardView.vue'
+import FindPartner from "../views/dashboard/FindPartner.vue"
 
 const routes = [
   { path: '/', component: Home },
@@ -15,7 +16,8 @@ const routes = [
   { path: '/login', component: Login},
   { path: '/register', component: Register},
   { path: '/trainer/:id', component: TrainerDetail },
-  { path: '/dashboard', component: DashboardView }
+  { path: '/dashboard', component: DashboardView },
+  { path: '/partner', component: FindPartner }
 ]
 
 export default createRouter({

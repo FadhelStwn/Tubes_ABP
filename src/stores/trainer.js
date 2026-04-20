@@ -52,7 +52,7 @@ export const useTrainerStore = defineStore('trainer', {
         name: "Rusdi Icikiwir",
         role: "Bodybuilding Coach",
         experience: "Spesialis bodybuilding & muscle gain",
-        address: "Medan, Indonesia",
+        address: "Bandung, Indonesia",
         email: "rusdi@gymbuddy.com",
         phone: "082211223344",
         totalClients: 110,
@@ -60,14 +60,14 @@ export const useTrainerStore = defineStore('trainer', {
       },
       {
         id: 6,
-        name: "Riko Racing",
+        name: "King Nasir",
         role: "Pilates Instructor",
         experience: "Instruktur pilates & core training",
         address: "Bali, Indonesia",
-        email: "riko@gymbuddy.com",
+        email: "King@gymbuddy.com",
         phone: "081333444555",
         totalClients: 60,
-        img: "https://images.unsplash.com/photo-1599058917212-d750089bc07e"
+        img: "https://i.pinimg.com/736x/e0/91/79/e0917930a682b6c8c90ddd274fd23410.jpg"
       }
     ]
   }),

@@ -11,8 +11,7 @@ const trainers = store.trainers
 
       <div 
         class="absolute inset-0 bg-cover bg-center bg-[position:10%_28%]"
-        style="background-image: url('/src/assets/trainer-bg.jpg')"
-      ></div>
+        style="background-image: url('/src/assets/trainer-bg.jpg')"></div>
 
       <div class="absolute inset-0 bg-black/70"></div>
 
