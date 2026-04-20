@@ -63,13 +63,13 @@ const route = useRoute()
           </ul>
 
           <!-- LOGIN BUTTON -->
-          <button
-            class="px-4 py-1 border border-white
-                   rounded-full text-white text-sm
-                   hover:bg-white hover:text-black transition"
+          <router-link 
+            to="/login"
+            :class="route.path === '/LoginView'"
+            class="px-4 py-1 border border-white rounded-full text-white text-sm hover:bg-white hover:text-black transition inline-block text-center"
           >
-            Log in
-          </button>
+              Log in
+            </router-link>
 
         </div>
 
