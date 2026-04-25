@@ -53,9 +53,11 @@
 <script setup>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
-import api from '../utils/api' // Gunakan jembatan api kita
+import api from '../utils/api' 
+import { useAuthStore } from '../stores/authStore' // Import store
 
 const router = useRouter()
+const authStore = useAuthStore() // Inisialisasi store
 const email = ref('')
 const password = ref('')
 const loading = ref(false)
@@ -63,18 +65,31 @@ const loading = ref(false)
 const handleLogin = async () => {
   loading.value = true
   try {
-    // Memanggil http://localhost:3000/api/auth/login lewat .env
     const response = await api.post('/auth/login', {
       email: email.value,
       password: password.value
     })
 
-    // Simpan token dari backend
+    // 1. Simpan token ke localStorage untuk interceptor api.js
     localStorage.setItem('token', response.data.token)
     
+    // 2. Simpan data user (termasuk role) ke Pinia
+    const user = response.data.user
+    authStore.setUser(user) 
+    
     alert("Login Berhasil!")
-    router.push('/dashboard')
+
+    // 3. Redirect otomatis berdasarkan role dari database
+    if (user.role === 'admin') {
+      router.push('/admin/dashboard') // Redirect ke template admin
+    } else if (user.role === 'trainer') {
+      router.push('/trainer/dashboard') // Redirect ke dashboard trainer
+    } else {
+      router.push('/dashboard') // Default untuk customer
+    }
+
   } catch (error) {
+    // Menangkap pesan error dari middleware backend
     const errorMsg = error.response?.data?.message || "Gagal terhubung ke server"
     alert("Login Gagal: " + errorMsg)
   } finally {

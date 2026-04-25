@@ -9,25 +9,6 @@
         <p class="text-gray-500 text-sm mt-1">Welcome back! <span class="text-green-400/80 italic font-medium">Keep pushing towards your goals.</span></p>
       </header>
 
-      <div class="bg-gradient-to-r from-[#2c1a11] to-[#1a110a] p-6 rounded-3xl border border-orange-900/30 mb-8 flex justify-between items-center relative overflow-hidden group">
-        <div class="relative z-10">
-          <h3 class="text-orange-500 font-bold uppercase text-xs tracking-widest mb-1 flex items-center gap-2">
-            <span>✨</span> Upgrade to Premium
-          </h3>
-          <p class="text-gray-300 text-sm max-w-md">Unlock unlimited bookings, priority access to top trainers, advanced analytics, and exclusive community features.</p>
-          <button class="mt-4 bg-orange-600 text-white px-6 py-2 rounded-xl text-xs font-bold hover:bg-orange-500 hover:scale-105 transition-all shadow-lg shadow-orange-900/20">
-          
-        <router-link to="/dashboard/PricingView">
-         View Plans
-        </router-link>          
-        </button>
-        </div>
-        
-        <div class="text-orange-900/20 text-8xl font-black absolute -right-4 -bottom-4 group-hover:rotate-12 transition-transform duration-500">
-          👑
-        </div>
-      </div>
-
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
         <div class="bg-[#0f1115] p-6 rounded-[2rem] border border-gray-900 hover:border-green-400/30 transition-all shadow-xl group">
           <div class="w-12 h-12 bg-green-400/10 rounded-2xl flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">👥</div>

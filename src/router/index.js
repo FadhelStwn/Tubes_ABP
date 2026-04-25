@@ -11,7 +11,6 @@ import TrainerDetail from '../views/TrainerDetail.vue'
 import DashboardView from '../views/dashboard/DashboardView.vue'
 import FindTrainers from '../views/dashboard/FindTrainers.vue'
 import MyBookings from '../views/dashboard/MyBookings.vue'
-import FindPartners from '../views/dashboard/FindPartners.vue'
 import PricingView from '../views/dashboard/PricingView.vue'
 import progres from '../views/dashboard/Progres.vue'
 
@@ -27,9 +26,6 @@ const routes = [
   { path: '/dashboard', component: DashboardView },
   { path: '/dashboard/find-trainers', component: FindTrainers },
   { path: '/dashboard/my-bookings', component: MyBookings },
-  { path: '/dashboard/find-partners', component: FindPartners },
-  { path: '/dashboard/my-bookings',component: MyBookings },
-  { path: '/dashboard', component: () => import('../views/dashboard/DashboardView.vue') },
   { path: '/dashboard/pricingview', component: PricingView},
   { path: '/dashboard/progres', component: progres },
   { path: '/dashboard/profile', component: () => import('../views/dashboard/profile.vue') },
@@ -43,15 +39,16 @@ const router = createRouter({
 })
 
 // --- BAGIAN SATPAM (Navigation Guard) ---
+// Ini ditaruh tepat sebelum "export default router"
 router.beforeEach((to, from, next) => {
-  const isAuthenticated = localStorage.getItem('token') // Cek apakah sudah login
+  const isAuthenticated = localStorage.getItem('token')
 
-  // Jika mau masuk ke dashboard tapi belum login, lempar ke login
+  // Cek apakah halaman yang dituju adalah bagian dari dashboard
   if (to.path.startsWith('/dashboard') && !isAuthenticated) {
-    alert("Maaf, login dulu ya!")
+    alert("Maaf, silakan login terlebih dahulu!")
     next('/login')
   } 
-  // Jika sudah login tapi mau ke login/register lagi, lempar ke dashboard
+  // Jika sudah login, dilarang balik ke halaman login/register
   else if ((to.path === '/login' || to.path === '/register') && isAuthenticated) {
     next('/dashboard')
   }
@@ -60,8 +57,5 @@ router.beforeEach((to, from, next) => {
   }
 })
 
-export default createRouter({
-  history: createWebHistory(),
-  routes,
-})
-
+// PERBAIKAN: Export variabel 'router' yang sudah dipasangi satpam
+export default router
