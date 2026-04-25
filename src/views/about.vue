@@ -19,7 +19,7 @@ import aboutImg from '../assets/about-conten.jpg'
         <h1 class="text-4xl md:text-5xl font-bold">
           About GymBuddy
         </h1>
-        <p class="text-gray-400 mt-2">Home / About</p>
+        <p class="text-gray-400 mt-2">About / Tentang Kami</p>
       </div>
 
     </section>
@@ -67,7 +67,7 @@ import aboutImg from '../assets/about-conten.jpg'
           </p>
 
           <ul class="space-y-2 text-sm text-gray-300">
-            <li>✔ Trainer bersertifikasi</li>
+            <li>✔ Trainer berkompeten</li>
             <li>✔ Jadwal fleksibel</li>
             <li>✔ Booking mudah</li>
           </ul>
@@ -96,8 +96,7 @@ import aboutImg from '../assets/about-conten.jpg'
         </p>
 
         <p class="text-gray-400 max-w-3xl mx-auto">
-          Fitur pencarian partner kami dirancang untuk menciptakan lingkungan yang aman,
-          positif, dan saling mendukung.
+          Fitur pencarian kami dirancang untuk memberikan solusi untuk kamu yang malu memulai olahraga sendirian dan bisa mendukung satu sama lain.
         </p>
 
       </div>

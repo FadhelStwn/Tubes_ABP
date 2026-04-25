@@ -37,9 +37,31 @@ const routes = [
   { path: '/dashboard/partners/:id', name: 'PartnerDetail', component: () => import('../views/dashboard/PartnerDetailView.vue') }
 ]
 
+const router = createRouter({
+  history: createWebHistory(),
+  routes,
+})
 
+// --- BAGIAN SATPAM (Navigation Guard) ---
+router.beforeEach((to, from, next) => {
+  const isAuthenticated = localStorage.getItem('token') // Cek apakah sudah login
+
+  // Jika mau masuk ke dashboard tapi belum login, lempar ke login
+  if (to.path.startsWith('/dashboard') && !isAuthenticated) {
+    alert("Maaf, login dulu ya!")
+    next('/login')
+  } 
+  // Jika sudah login tapi mau ke login/register lagi, lempar ke dashboard
+  else if ((to.path === '/login' || to.path === '/register') && isAuthenticated) {
+    next('/dashboard')
+  }
+  else {
+    next()
+  }
+})
 
 export default createRouter({
   history: createWebHistory(),
   routes,
 })
+

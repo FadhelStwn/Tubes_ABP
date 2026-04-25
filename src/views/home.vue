@@ -51,8 +51,7 @@
       </h2>
 
       <p class="text-gray-400 mb-6">
-        Platform untuk menemukan partner gym dan meningkatkan konsistensi latihan.
-        Kami membantu kamu tetap termotivasi dengan partner yang tepat.
+        Kami membantu kamu tetap konsisten olahraga dengan trainer dan program latihan yang tepat. Temukan partner latihan, atur jadwal, dan capai tujuan fitness kamu bersama GymBuddy!
       </p>
 
       <router-link to="/about" 

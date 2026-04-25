@@ -1,62 +1,84 @@
 <template>
-  <div class="relative min-h-screen flex items-center justify-center overflow-hidden">
-    
-    <div 
-      class="absolute inset-0 bg-cover bg-center z-0"
-      style="background-image: url('https://images.unsplash.com/photo-1554284126-aa88f22d8b74')"
-    >
-      <div class="absolute inset-0 bg-black/50"></div>
-    </div>
-
-    <div class="relative z-10 bg-white/90 backdrop-blur-md p-8 rounded-2xl shadow-2xl w-96 border border-white/20">
-      <h2 class="text-2xl font-bold mb-6 text-center text-gray-800">Login Gym App</h2>
+  <div class="min-h-screen flex items-center justify-center bg-[#000000] p-4 font-sans">
+    <div class="max-w-5xl w-full grid grid-cols-1 md:grid-cols-2 bg-[#000000] rounded-3xl overflow-hidden shadow-2xl">
       
-      <form @submit.prevent="handleLogin">
-        <div class="mb-4">
-          <label class="block mb-2 text-sm font-medium text-gray-700">Email</label>
-          <input 
-            type="email" 
-            class="w-full border p-2 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition" 
-            placeholder="admin@gym.com"
-          >
+      <div class="relative hidden md:block p-12 bg-cover bg-center" 
+           style="background-image: url('/src/assets/gymapp-login.jpg')">
+        <div class="absolute inset-0 bg-black/70 backdrop-blur-[2px]"></div>
+        <div class="relative z-10 h-full flex flex-col justify-center text-white">
+          <p class="text-sm font-semibold tracking-widest uppercase mb-4 text-green-400">Join For Free</p>
+          <h1 class="text-5xl font-bold leading-tight mb-6">
+            Latihan Jadi Lebih Mudah <span class="text-green-400 font-black">Bersama GymBuddy</span>
+          </h1>
+          <p class="text-gray-300 mb-10 max-w-sm">Temukan trainer terbaik dan wujudkan tubuh impianmu dengan sistem yang praktis dan terpercaya.</p>
         </div>
-        <div class="mb-6">
-          <label class="block mb-2 text-sm font-medium text-gray-700">Password</label>
-          <input 
-            type="password" 
-            class="w-full border p-2 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition" 
-            placeholder="******"
-          >
-        </div>
-        <button 
-          type="submit" 
-          class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition font-semibold shadow-md active:scale-95"
-        >
-          Login
-        </button>
-      </form>
+      </div>
 
-      <div class="mt-6 text-center text-sm text-gray-600">
-        Belum punya akun? 
-        <router-link to="/register" class="text-blue-600 font-semibold hover:underline cursor-pointer">
-          Daftar di sini
-        </router-link>
+      <div class="p-8 md:p-16 flex flex-col justify-center bg-[#000000]">
+        <div class="mb-10">
+          <h2 class="text-4xl font-bold text-white mb-2">Selamat Datang<span class="text-green-500">.</span></h2>
+          <p class="text-gray-400">Silakan masukkan detail Anda untuk masuk.</p>
+        </div>
+
+        <form @submit.prevent="handleLogin" class="space-y-6">
+          <div class="relative">
+            <label class="block text-xs font-semibold text-gray-500 uppercase mb-2 ml-1">Email Address</label>
+            <input v-model="email" type="email" required
+                   class="w-full bg-[#1F2937] border border-gray-700 text-white px-5 py-4 rounded-2xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all placeholder-gray-600"
+                   placeholder="Enter your email">
+          </div>
+
+          <div class="relative">
+            <label class="block text-xs font-semibold text-gray-500 uppercase mb-2 ml-1">Password</label>
+            <input v-model="password" type="password" required
+                   class="w-full bg-[#1F2937] border border-gray-700 text-white px-5 py-4 rounded-2xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all placeholder-gray-600"
+                   placeholder="••••••••">
+          </div>
+
+          <button type="submit" :disabled="loading"
+                  class="w-full bg-green-500 text-white py-4 rounded-2xl font-bold text-lg hover:bg-[#27AE60] shadow-xl shadow-green-500/20 transition-all active:scale-[0.98] disabled:bg-gray-600">
+            {{ loading ? 'Signing In...' : 'Log In' }}
+          </button>
+        </form>
+
+        <p class="mt-8 text-center text-gray-400 text-sm">
+          Not a Member yet? 
+          <router-link to="/register" class="text-blue-400 font-bold hover:underline ml-1">Join for Free</router-link>
+        </p>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
+import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import api from '../utils/api' // Gunakan jembatan api kita
 
 const router = useRouter()
+const email = ref('')
+const password = ref('')
+const loading = ref(false)
 
-const handleLogin = () => {
-  // 1. Logika validasi login kamu di sini (misal cek email/password)
-  console.log("Login berhasil!")
+const handleLogin = async () => {
+  loading.value = true
+  try {
+    // Memanggil http://localhost:3000/api/auth/login lewat .env
+    const response = await api.post('/auth/login', {
+      email: email.value,
+      password: password.value
+    })
 
-  // 2. Arahkan ke dashboard
-  // Pastikan '/dashboard' sesuai dengan path yang ada di router/index.js
-  router.push('/dashboard')
+    // Simpan token dari backend
+    localStorage.setItem('token', response.data.token)
+    
+    alert("Login Berhasil!")
+    router.push('/dashboard')
+  } catch (error) {
+    const errorMsg = error.response?.data?.message || "Gagal terhubung ke server"
+    alert("Login Gagal: " + errorMsg)
+  } finally {
+    loading.value = false
+  }
 }
 </script>

@@ -52,7 +52,7 @@ const trainers = store.trainers
       </p>
 
       <p class="text-gray-400 mb-4 leading-relaxed">
-        Dengan pengalaman profesional dan sertifikasi terpercaya, trainer kami mampu
+        Dengan pengalaman profesional dan terpercaya, trainer kami mampu
         menyusun program latihan yang sesuai dengan kebutuhanmu, sekaligus memberikan
         motivasi agar kamu tetap konsisten.
       </p>

@@ -64,11 +64,20 @@
 
 <script setup>
 import { useRouter } from 'vue-router'
+
 const router = useRouter()
+
 const handleLogout = () => {
-  // Jika nanti sudah pakai sistem auth, hapus token/session di sini
-  // localStorage.removeItem('token')  
-  // Arahkan kembali ke halaman landing page (path: '/')
-  router.push('/')
+  // 1. Hapus token agar "Satpam" di router tahu Anda sudah keluar
+  localStorage.removeItem('token')
+  
+  // 2. (Opsional) Jika Anda menyimpan data user, hapus juga
+  localStorage.removeItem('user')
+
+  // 3. Tampilkan notifikasi kecil
+  alert('Anda telah berhasil keluar.')
+
+  // 4. Arahkan ke halaman utama atau halaman login
+  router.push('/login')
 }
 </script>

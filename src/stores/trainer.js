@@ -28,7 +28,7 @@ export const useTrainerStore = defineStore('trainer', {
       {
         id: 3,
         name: "Fuad Sparta",
-        role: "Yoga Specialist",
+        role: "hypertrophy",
         experience: "Ahli yoga & fleksibilitas",
         address: "Surabaya, Indonesia",
         email: "fuad@gymbuddy.com",

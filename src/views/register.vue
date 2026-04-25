@@ -1,73 +1,123 @@
 <template>
-  <div class="min-h-screen flex items-center justify-center bg-gray-100 py-12 px-4">
-
-    <div 
-      class="absolute inset-0 bg-cover bg-center z-0"
-      style="background-image: url('https://images.unsplash.com/photo-1517836357463-d25dfeac3438')"
-    >
-      <div class="absolute inset-0 bg-black/50"></div>
-    </div>
+  <div class="min-h-screen bg-[#000000] flex flex-col items-center justify-center p-6 font-sans">
     
-    <div class="relative z-10 max-w-md w-full bg-white p-8 rounded-xl shadow-lg">
-      <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">Daftar Akun</h2>
+    <div class="max-w-5xl w-full mx-auto flex justify-center mt-20 mb-12">
       
-      <form @submit.prevent="handleRegister" class="space-y-4">
-        <div>
-          <label class="block text-sm font-medium text-gray-700">Nama Lengkap</label>
-          <input v-model="formData.name" type="text" placeholder="Masukkan nama lengkap" 
-                 class="mt-1 w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500">
+      <div class="w-full grid grid-cols-1 md:grid-cols-2 bg-[#111111] rounded-[2.5rem] overflow-hidden shadow-2xl">
+        
+        <div class="relative hidden md:block overflow-hidden">
+          <img src="/src/assets/gymapp-register.jpg" alt="Register Image"
+               class="absolute inset-0 w-full h-full object-cover" />
+          
+          <div class="absolute inset-0 bg-black/60 backdrop-blur-[2px]"></div>
+          
+          <div class="relative z-10 p-12 h-full flex flex-col justify-center text-white">
+            <p class="text-green-400 font-bold uppercase tracking-widest text-xs mb-3">Bergabung dengan GymBuddy</p>
+            <h1 class="text-4xl lg:text-5xl font-bold leading-tight mb-6">
+              Mulai Perjalanan Fitness-mu <span class="text-green-500">Hari ini</span>, Jadilah versi Terbaik Dirimu!
+            </h1>
+            <p class="text-gray-300 text-sm mb-8 max-w-xs">
+              Daftar sekarang dan temukan cara termudah serta aman untuk memesan personal trainer sesuai kebutuhanmu.
+            </p>
+          </div>
         </div>
 
-        <div>
-          <label class="block text-sm font-medium text-gray-700">Email</label>
-          <input v-model="formData.email" type="email" placeholder="nama@email.com" 
-                 class="mt-1 w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500">
+        <div class="p-10 md:p-14 bg-[#000000] flex flex-col justify-center">
+          <div class="mb-10">
+            <h2 class="text-4xl font-bold text-white mb-2">Daftar Akun<span class="text-green-500">.</span></h2>
+            <p class="text-gray-400">Silakan lengkapi detail data diri Anda.</p>
+          </div>
+
+          <form @submit.prevent="handleRegister" class="space-y-6">
+            <div class="space-y-2">
+              <label class="text-xs font-semibold text-gray-500 uppercase ml-1">Nama Lengkap</label>
+              <input v-model="formData.nama" type="text" placeholder="Masukkan nama lengkap" required
+                     class="w-full bg-[#1A1A1A] border-none text-white px-6 py-4 rounded-full focus:ring-2 focus:ring-green-500 outline-none transition-all placeholder-gray-700">
+            </div>
+
+            <div class="space-y-2">
+              <label class="text-xs font-semibold text-gray-500 uppercase ml-1">Email Address</label>
+              <input v-model="formData.email" type="email" placeholder="nama@email.com" required
+                     class="w-full bg-[#1A1A1A] border-none text-white px-6 py-4 rounded-full focus:ring-2 focus:ring-green-500 outline-none transition-all placeholder-gray-700">
+            </div>
+
+            <div class="space-y-2">
+              <label class="text-xs font-semibold text-gray-500 uppercase ml-1">Password</label>
+              <input v-model="formData.password" type="password" placeholder="••••••••" required
+                     class="w-full bg-[#1A1A1A] border-none text-white px-6 py-4 rounded-full focus:ring-2 focus:ring-green-500 outline-none transition-all placeholder-gray-700">
+            </div>
+
+            <div class="grid grid-cols-2 gap-4">
+              <div class="space-y-2">
+                <label class="text-xs font-semibold text-gray-500 uppercase ml-1">Provinsi</label>
+                <input v-model="formData.propinsi" type="text" placeholder="Jateng" required
+                       class="w-full bg-[#1A1A1A] border-none text-white px-6 py-4 rounded-full focus:ring-2 focus:ring-green-500 outline-none transition-all placeholder-gray-700">
+              </div>
+              <div class="space-y-2">
+                <label class="text-xs font-semibold text-gray-500 uppercase ml-1">Kota</label>
+                <input v-model="formData.kota" type="text" placeholder="Purwokerto" required
+                       class="w-full bg-[#1A1A1A] border-none text-white px-6 py-4 rounded-full focus:ring-2 focus:ring-green-500 outline-none transition-all placeholder-gray-700">
+              </div>
+            </div>
+
+            <div class="space-y-2 relative">
+              <label class="text-xs font-semibold text-gray-500 uppercase ml-1">Daftar Sebagai</label>
+              <select v-model="formData.role" required
+                      class="w-full bg-[#1A1A1A] border-none text-white px-6 py-4 rounded-full focus:ring-2 focus:ring-green-500 outline-none appearance-none cursor-pointer">
+                <option value="" disabled>Pilih peran Anda</option>
+                <option value="customer">Customer (Member)</option>
+                <option value="trainer">Trainer (Pelatih)</option>
+              </select>
+              <span class="absolute right-6 top-[55px] -translate-y-1/2 text-green-500 pointer-events-none text-xs">▼</span>
+            </div>
+
+            <button type="submit" :disabled="loading"
+                    class="w-full bg-green-500 text-black py-4 rounded-full font-bold text-lg hover:bg-green-600 shadow-xl shadow-green-500/20 transition-all mt-4">
+              {{ loading ? 'Memproses...' : 'Buat Akun' }}
+            </button>
+          </form>
+
+          <p class="mt-8 text-center text-gray-400 text-sm">
+            Sudah punya akun? 
+            <router-link to="/login" class="text-blue-400 font-bold hover:underline">Log in di sini</router-link>
+          </p>
         </div>
-
-        <div>
-          <label class="block text-sm font-medium text-gray-700">Password</label>
-          <input v-model="formData.password" type="password" placeholder="••••••••" 
-                 class="mt-1 w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500">
-        </div>
-
-        <div>
-          <label class="block text-sm font-medium text-gray-700">Daftar Sebagai</label>
-          <select v-model="formData.role" 
-                  class="mt-1 w-full p-2 border border-gray-300 rounded-md bg-white focus:ring-blue-500 focus:border-blue-500">
-            <option value="" disabled>Pilih peran kamu</option>
-            <option value="customer">Customer (Member)</option>
-            <option value="trainer">Trainer (Pelatih)</option>
-          </select>
-        </div>
-
-        <button type="submit" 
-                class="w-full bg-blue-600 text-white py-2 rounded-md font-semibold hover:bg-blue-700 transition duration-200">
-          Buat Akun
-        </button>
-      </form>
-
-      <p class="mt-4 text-center text-sm text-gray-600">
-        Sudah punya akun? 
-        <router-link to="/login" class="text-blue-600 hover:underline">Log in di sini</router-link>
-      </p>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+import api from '../utils/api' // Pastikan path ke api.js benar
 
-// Objek untuk menampung semua data form
+const router = useRouter()
+const loading = ref(false)
+
 const formData = ref({
-  name: '',
+  nama: '',     // Sesuai kolom database
   email: '',
   password: '',
-  role: '' // Default kosong agar memicu teks 'Pilih peran kamu'
+  role: '',     // Akan terisi 'customer' atau 'trainer'
+  propinsi: '', // Wajib ada agar tidak error DB
+  kota: ''      // Wajib ada agar tidak error DB
 })
 
-const handleRegister = () => {
-  // Sementara kita tampilkan di console dulu
-  console.log('Data Pendaftaran:', formData.value)
-  alert(`Berhasil daftar sebagai ${formData.value.role}!`)
+const handleRegister = async () => {
+  loading.value = true
+  try {
+    // Memanggil endpoint register di backend
+    await api.post('/auth/register', formData.value)
+    
+    alert('Pendaftaran Berhasil! Silakan Login.')
+    router.push('/login')
+  } catch (error) {
+    const msg = error.response?.data?.message || "Gagal mendaftar. Periksa koneksi backend."
+    alert("Error: " + msg)
+    console.error('Register Error:', error)
+  } finally {
+    loading.value = false
+  }
 }
 </script>
