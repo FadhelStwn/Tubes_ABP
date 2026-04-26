@@ -83,7 +83,7 @@ const handleLogin = async () => {
     if (user.role === 'admin') {
       router.push('/admin/dashboard') // Redirect ke template admin
     } else if (user.role === 'trainer') {
-      router.push('/trainer-panel/tdashboard') // Redirect ke dashboard trainer
+      router.push('/trainer-panel/dashboard') // Redirect ke dashboard trainer
     } else {
       router.push('/dashboard') // Default untuk customer
     }
