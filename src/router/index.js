@@ -14,6 +14,11 @@ import MyBookings from '../views/dashboard/MyBookings.vue'
 import PricingView from '../views/dashboard/PricingView.vue'
 import progres from '../views/dashboard/Progres.vue'
 
+import dbtrainer from '../views/dashboard_trainer/TrainerDashboard.vue'
+import mstrainer from '../views/dashboard_trainer/ManageSessionsView.vue'
+import tcvtrainer from '../views/dashboard_trainer/TrainerClientsView.vue'
+import teptrainer from '../views/dashboard_trainer/TrainerEditProfile.vue'
+
 const routes = [
   { path: '/', component: Home },
   { path: '/about', component: About },
@@ -30,8 +35,16 @@ const routes = [
   { path: '/dashboard/progres', component: progres },
   { path: '/dashboard/profile', component: () => import('../views/dashboard/profile.vue') },
   { path: '/dashboard/profile/edit', component: () => import('../views/dashboard/EditProfileView.vue') },
-  { path: '/dashboard/partners/:id', name: 'PartnerDetail', component: () => import('../views/dashboard/PartnerDetailView.vue') }
-]
+  { path: '/dashboard/partners/:id', name: 'PartnerDetail', component: () => import('../views/dashboard/PartnerDetailView.vue') },
+
+  //Dashboard trainer
+  { path: '/trainer-panel/dashboard', name: 'TrainerDashboard', component: dbtrainer },
+  { path: '/trainer-panel/sesion', name: 'ManageSessionsView', component: mstrainer },
+  { path: '/trainer-panel/clien', name: 'TrainerClientsView', component: tcvtrainer },
+  { path: '/trainer-panel/profile', name: 'TrainerEditProfile', component: teptrainer },
+
+
+  ]
 
 const router = createRouter({
   history: createWebHistory(),
