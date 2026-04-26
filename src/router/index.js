@@ -36,6 +36,8 @@ const routes = [
   { path: '/dashboard/profile', component: () => import('../views/dashboard/profile.vue') },
   { path: '/dashboard/profile/edit', component: () => import('../views/dashboard/EditProfileView.vue') },
   { path: '/dashboard/partners/:id', name: 'PartnerDetail', component: () => import('../views/dashboard/PartnerDetailView.vue') },
+  { path: '/dashboard/profile/edit/:id', component: () => import('../views/dashboard/EditProfileView.vue') },
+
 
   //Dashboard trainer
   { path: '/trainer-panel/dashboard', name: 'TrainerDashboard', component: dbtrainer },
