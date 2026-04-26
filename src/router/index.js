@@ -29,8 +29,7 @@ const routes = [
   { path: '/dashboard/pricingview', component: PricingView},
   { path: '/dashboard/progres', component: progres },
   { path: '/dashboard/profile', component: () => import('../views/dashboard/profile.vue') },
-  { path: '/dashboard/profile/edit', component: () => import('../views/dashboard/EditProfileView.vue') },
-  { path: '/dashboard/partners/:id', name: 'PartnerDetail', component: () => import('../views/dashboard/PartnerDetailView.vue') }
+  { path: '/dashboard/profile/edit/:id', component: () => import('../views/dashboard/EditProfileView.vue') },
 ]
 
 const router = createRouter({

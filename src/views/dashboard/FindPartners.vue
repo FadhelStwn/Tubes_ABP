@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <div class="flex min-h-screen bg-black font-sans">
     <DashboardSidebar />
 
@@ -183,4 +183,4 @@ const filteredPartners = computed(() => {
     return matchesSearch && matchesGoal && matchesConnected;
   });
 });
-</script>
+</script> -->
