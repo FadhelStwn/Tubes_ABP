@@ -22,11 +22,12 @@ const isMemberPanel = computed(() => route.path.startsWith('/dashboard'))
 <template>
   <Navbar v-if="!isDashboardArea" />
 
-  <div :class="{ 'flex min-h-screen bg-[#0a0b10]': isDashboardArea }">
+  <div :class="{ 'flex h-screen overflow-hidden bg-[#0a0b10]': isDashboardArea }">
+    
     <TrainerSidebar v-if="isTrainerPanel" />
     <DashboardSidebar v-else-if="isMemberPanel" />
 
-    <div :class="{ 'flex-grow w-full overflow-y-auto': isDashboardArea }">
+    <div :class="{ 'flex-grow h-full overflow-y-auto w-full': isDashboardArea }">
       <router-view />
     </div>
   </div>

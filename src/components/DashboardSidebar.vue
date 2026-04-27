@@ -1,6 +1,6 @@
 <template>
-  <aside class="w-64 bg-[#0a0a0a] text-gray-400 flex flex-col min-h-screen border-r border-gray-900 shadow-2xl">
-    
+<aside class="w-64 bg-[#0a0a0a] text-gray-400 flex flex-col h-screen sticky top-0 border-r border-gray-900 shadow-2xl shrink-0">
+
     <div class="p-6">
       <h1 class="text-xl font-bold text-white flex items-center gap-3">
         <span class="p-2 bg-green-400 rounded-lg text-black text-xs font-black">GB</span> 

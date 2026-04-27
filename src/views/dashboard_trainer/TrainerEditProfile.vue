@@ -2,8 +2,6 @@
   <div class="flex min-h-screen bg-[#0a0b10]">
     <DashboardSidebar />
 
-    <div class="w-64 flex-shrink-0 hidden md:block"></div>
-
     <main class="flex-grow p-8 text-white font-sans">
       <div class="max-w-5xl">
         
