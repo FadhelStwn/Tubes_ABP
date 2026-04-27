@@ -10,131 +10,129 @@
         <div class="w-10 h-10 bg-green-400/10 rounded-xl flex items-center justify-center mb-4 border border-green-400/20">
           <span class="text-green-400 text-xl">📅</span>
         </div>
-        <p class="text-2xl font-black italic">12</p>
-        <p class="text-[9px] font-black text-gray-600 uppercase tracking-widest">Sesi Aktif</p>
+        <p class="text-2xl font-black italic">{{ stats.totalSessions }}</p>
+        <p class="text-[9px] font-black text-gray-600 uppercase tracking-widest text-nowrap">Sesi Aktif</p>
       </div>
 
       <div class="bg-[#161920] p-6 rounded-[1.5rem] border border-gray-900">
         <div class="w-10 h-10 bg-blue-400/10 rounded-xl flex items-center justify-center mb-4 border border-blue-400/20">
           <span class="text-blue-400 text-xl">👥</span>
         </div>
-        <p class="text-2xl font-black italic">28</p>
-        <p class="text-[9px] font-black text-gray-600 uppercase tracking-widest">Total Booker</p>
-      </div>
-
-      <div class="bg-[#161920] p-6 rounded-[1.5rem] border border-gray-900">
-        <div class="w-10 h-10 bg-purple-400/10 rounded-xl flex items-center justify-center mb-4 border border-purple-400/20">
-          <span class="text-purple-400 text-xl">💵</span>
-        </div>
-        <p class="text-2xl font-black italic text-green-400">Rp 2.3jt</p>
-        <p class="text-[9px] font-black text-gray-600 uppercase tracking-widest">Bulan ini</p>
-      </div>
-
-      <div class="bg-[#161920] p-6 rounded-[1.5rem] border border-gray-900">
-        <div class="w-10 h-10 bg-orange-400/10 rounded-xl flex items-center justify-center mb-4 border border-orange-400/20">
-          <span class="text-orange-400 text-xl">⭐</span>
-        </div>
-        <p class="text-2xl font-black italic text-orange-400">4.9</p>
-        <p class="text-[9px] font-black text-gray-600 uppercase tracking-widest">Rating</p>
+        <p class="text-2xl font-black italic">{{ stats.totalBookers }}</p>
+        <p class="text-[9px] font-black text-gray-600 uppercase tracking-widest text-nowrap">Total Booker</p>
       </div>
     </div>
 
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
-      <div class="lg:col-span-2 space-y-6">
-        <div class="flex justify-between items-center px-2">
-          <h3 class="font-black uppercase text-sm tracking-widest">Sesi Latihan Saya</h3>
-          <button class="text-[10px] text-green-400 font-bold uppercase tracking-widest hover:underline">Kelola Semua</button>
-        </div>
-
-        <div class="space-y-4">
-          <div v-for="session in sessions" :key="session.id" 
-               class="bg-[#161920] p-6 rounded-[2rem] border border-gray-900 hover:border-green-400/30 transition-all relative overflow-hidden group">
-            <div class="flex justify-between items-start">
-              <div>
-                <h4 class="font-black text-sm uppercase tracking-tight mb-2 italic">{{ session.title }}</h4>
-                <div class="space-y-1">
-                  <p class="text-[10px] text-gray-500 font-bold uppercase tracking-wider flex items-center gap-2">
-                    <span>🗓️</span> {{ session.days }} • {{ session.time }}
-                  </p>
-                  <p class="text-[10px] text-green-400 font-black tracking-widest uppercase">
-                    {{ session.price }} <span class="text-gray-600 mx-2">|</span> 👥 {{ session.bookerCount }} booker
-                  </p>
-                </div>
-              </div>
-              <span class="bg-green-400/10 text-green-400 text-[8px] font-black px-3 py-1 rounded border border-green-400/20 uppercase">active</span>
-            </div>
-          </div>
-          
-          <button class="w-full py-4 border-2 border-dashed border-gray-800 rounded-[1.5rem] text-[10px] font-black uppercase tracking-widest text-gray-600 hover:border-green-400/50 hover:text-green-400 transition-all">
-            + Buat Sesi Baru
-          </button>
-        </div>
-      </div>
-
-      <div class="space-y-6">
-        <div class="flex justify-between items-center px-2">
-          <h3 class="font-black uppercase text-sm tracking-widest">Booker Terbaru</h3>
-          <button class="text-[10px] text-green-400 font-bold uppercase tracking-widest hover:underline">Lihat Semua</button>
-        </div>
-
-        <div class="bg-[#161920] p-6 rounded-[2.5rem] border border-gray-900 space-y-6">
-          <div v-for="booker in recentBookers" :key="booker.id" class="flex items-center justify-between group">
-            <div class="flex items-center gap-4">
-              <div class="w-10 h-10 bg-green-400 rounded-xl flex items-center justify-center text-black font-black text-xs italic">
-                {{ booker.initials }}
-              </div>
-              <div>
-                <p class="text-xs font-bold text-white group-hover:text-green-400 transition-colors">{{ booker.name }}</p>
-                <p class="text-[9px] text-gray-500 font-bold uppercase">{{ booker.type }}</p>
-              </div>
-            </div>
-            <div class="text-right">
-              <p class="text-[8px] text-gray-600 font-bold mb-1">{{ booker.date }}</p>
-              <span :class="booker.status === 'confirmed' ? 'text-green-400' : 'text-orange-400'" 
-                    class="text-[8px] font-black uppercase px-2 py-0.5 bg-white/5 rounded border border-white/10">
-                {{ booker.status }}
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="space-y-6 mt-10">
-      <h3 class="font-black uppercase text-sm tracking-widest px-2">Quick Actions</h3>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-
-        <router-link to='/trainer/sesion' 
+    <div class="mb-10">
+      <h3 class="text-sm font-black uppercase tracking-widest mb-4 flex items-center gap-2">
+        Quick Actions <span class="w-10 h-[1px] bg-gray-800"></span>
+      </h3>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <router-link to="/trainer/manage-sessions" 
         class="bg-green-400/5 border border-green-400/20 p-6 rounded-2xl hover:bg-green-400/10 transition-all cursor-pointer group">
-          <p class="text-green-400 font-black text-xs uppercase mb-1">Kelola Sesi</p>
+          <p class="text-green-400 font-black text-xs uppercase mb-1">Kelola Jadwal</p>
           <p class="text-[10px] text-gray-500 font-bold group-hover:text-gray-300">Tambah, edit, atau hapus sesi</p>
         </router-link>
-        
 
-        <router-link to='/trainer/clien'
+        <router-link to="/trainer/participants"
         class="bg-blue-400/5 border border-blue-400/20 p-6 rounded-2xl hover:bg-blue-400/10 transition-all cursor-pointer group">
           <p class="text-blue-400 font-black text-xs uppercase mb-1">Lihat Booker</p>
           <p class="text-[10px] text-gray-500 font-bold group-hover:text-gray-300">Cek member yang booking</p>
         </router-link>
+      </div>
+    </div>
 
+    <div class="bg-[#161920] rounded-[2rem] border border-gray-900 overflow-hidden shadow-2xl">
+      <div class="p-8 border-b border-gray-900 flex justify-between items-center">
+        <h3 class="text-lg font-black uppercase tracking-tight italic">Jadwal Sesi Anda</h3>
+        <span class="text-[10px] text-gray-500 font-bold uppercase tracking-widest">Real-time Data</span>
+      </div>
+
+      <div class="overflow-x-auto">
+        <table class="w-full text-left">
+          <thead>
+            <tr class="bg-black/20">
+              <th class="py-4 px-8 text-[10px] font-black text-gray-600 uppercase tracking-widest">Sesi</th>
+              <th class="py-4 px-8 text-[10px] font-black text-gray-600 uppercase tracking-widest">Waktu</th>
+              <th class="py-4 px-8 text-[10px] font-black text-gray-600 uppercase tracking-widest text-center">Status Booker</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-if="loading">
+               <td colspan="3" class="py-20 text-center">
+                  <div class="animate-pulse text-green-400 font-black uppercase text-xs tracking-widest">Loading Schedule...</div>
+               </td>
+            </tr>
+            <tr v-else-if="sessions.length === 0">
+               <td colspan="3" class="py-20 text-center text-gray-600 font-bold text-xs uppercase tracking-widest">
+                  Belum ada sesi yang dibuat.
+               </td>
+            </tr>
+            <tr v-for="session in sessions" :key="session.session_id" class="border-b border-gray-900/50 hover:bg-white/[0.02] transition-colors group">
+              <td class="py-6 px-8">
+                <p class="text-xs font-black uppercase group-hover:text-green-400 transition-colors">{{ session.title }}</p>
+                <p class="text-[9px] text-gray-600 font-bold mt-1 uppercase italic">📍 {{ session.location_name || 'Main Gym' }}</p>
+              </td>
+              <td class="py-6 px-8">
+                <div class="flex flex-col gap-1">
+                  <p class="text-[10px] text-gray-300 font-black tracking-tight">{{ formatDate(session.start_time) }}</p>
+                  <p class="text-[10px] text-gray-500 font-medium">{{ formatTime(session.start_time) }} - {{ formatTime(session.end_time) }}</p>
+                </div>
+              </td>
+              <td class="py-6 px-8 text-center">
+                <span class="text-[10px] bg-green-400/10 text-green-400 px-4 py-1.5 rounded-full border border-green-400/20 font-black uppercase tracking-widest">
+                  {{ session.confirmed_customers || 0 }} Members
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </main>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
+import api from '../../utils/api'
 
-const sessions = ref([
-  { id: 1, title: 'Strength Training - Beginner', days: 'Senin, Rabu, Jumat', time: '09:00-10:00', price: 'Rp 150.000', bookerCount: '8/10' },
-  { id: 2, title: 'HIIT Workout', days: 'Selasa, Kamis', time: '18:00-19:00', price: 'Rp 200.000', bookerCount: '6/8' },
-  { id: 3, title: 'Weight Loss Program', days: 'Senin, Rabu', time: '17:00-18:00', price: 'Rp 175.000', bookerCount: '5/10' },
-])
+// State
+const sessions = ref([])
+const stats = ref({
+  totalSessions: 0,
+  totalBookers: 0
+})
+const loading = ref(true)
 
-const recentBookers = ref([
-  { id: 1, name: 'Alex Johnson', initials: 'AJ', type: 'Strength Training', date: '2026-04-24', status: 'confirmed' },
-  { id: 2, name: 'Sarah Chen', initials: 'SC', type: 'HIIT Workout', date: '2026-04-24', status: 'confirmed' },
-  { id: 3, name: 'Michael Brown', initials: 'MB', type: 'Weight Loss', date: '2026-04-23', status: 'confirmed' },
-  { id: 4, name: 'Emma Davis', initials: 'ED', type: 'Strength Training', date: '2026-04-22', status: 'pending' },
-])
+// Fetch Data dari Backend
+const fetchTrainerDashboard = async () => {
+  loading.value = true
+  try {
+    // Memanggil View trainer-schedule sesuai README
+    const { data } = await api.get('/views/trainer-schedule')
+    sessions.value = data
+    
+    // Hitung Stats
+    stats.value.totalSessions = data.length
+    stats.value.totalBookers = data.reduce((acc, curr) => acc + (curr.confirmed_customers || 0), 0)
+    
+  } catch (err) {
+    console.error('Error fetching trainer dashboard:', err)
+  } finally {
+    loading.value = false
+  }
+}
+
+// Formatters
+const formatTime = (dateStr) => {
+  if (!dateStr) return '--:--'
+  return new Date(dateStr).toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' })
+}
+
+const formatDate = (dateStr) => {
+  if (!dateStr) return ''
+  return new Date(dateStr).toLocaleDateString('id-ID', { weekday: 'long', day: 'numeric', month: 'short' })
+}
+
+onMounted(fetchTrainerDashboard)
 </script>

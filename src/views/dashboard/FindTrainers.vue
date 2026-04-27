@@ -102,90 +102,93 @@
 
 <script setup>
 import { ref, onMounted, computed } from 'vue'
-import { useRouter } from 'vue-router'
-import api from '../../utils/api'
 import DashboardSidebar from '../../components/DashboardSidebar.vue'
+import api from '../../utils/api'
 
-const router = useRouter()
+// State
 const sessions = ref([])
-const myBookedIds = ref([]) // Untuk menyimpan list ID sesi yang sudah dibooking
+const myBookings = ref([])
 const loading = ref(true)
 const loadingBooking = ref(false)
-
 const searchQuery = ref('')
 const selectedSpecialty = ref('')
 const selectedLocation = ref('')
 
-// Load data sesi dari backend
-const fetchSessions = async () => {
+const fetchData = async () => {
+  loading.value = true
   try {
-    loading.value = true
-    const response = await api.get('/views/upcoming-sessions')
-    sessions.value = Array.isArray(response.data) ? response.data : (response.data.data || [])
+    const resSessions = await api.get('/sessions')
+    
+    // DEBUG: Cek di Console (F12) untuk melihat isi asli dari database
+    console.log("Data dari Backend:", resSessions.data)
+    
+    // Pastikan data adalah Array
+    if (resSessions.data && Array.isArray(resSessions.data)) {
+      sessions.value = resSessions.data
+    } else if (resSessions.data.data && Array.isArray(resSessions.data.data)) {
+      // Beberapa backend membungkus array di dalam objek { data: [] }
+      sessions.value = resSessions.data.data
+    } else {
+      sessions.value = []
+    }
+
+    // Ambil riwayat booking (opsional)
+    const resMyBookings = await api.get('/views/customer-booking-history')
+    myBookings.value = resMyBookings.data || []
+    
   } catch (err) {
-    console.error("Gagal load sesi:", err)
+    console.error('Fetch error:', err)
   } finally {
     loading.value = false
   }
 }
 
-// Load history booking user (untuk mematikan tombol yang sudah dibooking)
-const fetchUserBookings = async () => {
-  try {
-    const response = await api.get('/views/customer-booking-history')
-    // Simpan ID sesinya saja ke dalam array
-    myBookedIds.value = response.data.map(item => item.session_id)
-  } catch (err) {
-    console.error("Gagal load history booking:", err)
-  }
-}
-
-// Cek apakah ID sesi ada di daftar booking user
-const isAlreadyBooked = (id) => myBookedIds.value.includes(id)
-
+// Logika Filtering (Pastikan variabel ada)
 const filteredSessions = computed(() => {
+  if (!sessions.value) return []
   return sessions.value.filter(s => {
-    const name = (s.trainer_name || '').toLowerCase()
-    const title = (s.title || '').toLowerCase()
-    const loc = (s.location_name || '').toLowerCase()
-    const search = searchQuery.value.toLowerCase()
+    const name = s.trainer_name || ''
+    const title = s.title || ''
+    const loc = s.location_name || ''
 
-    return (name.includes(search) || title.includes(search)) &&
-           (!selectedSpecialty.value || title.includes(selectedSpecialty.value.toLowerCase())) &&
-           (!selectedLocation.value || loc.includes(selectedLocation.value.toLowerCase()))
+    const matchSearch = name.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
+                        title.toLowerCase().includes(searchQuery.value.toLowerCase())
+    const matchSpecialty = selectedSpecialty.value === '' || title.includes(selectedSpecialty.value)
+    const matchLocation = selectedLocation.value === '' || loc === selectedLocation.value
+    
+    return matchSearch && matchSpecialty && matchLocation
   })
 })
 
+const formatTime = (dateStr) => {
+  if (!dateStr) return '--:--'
+  try {
+    const date = new Date(dateStr)
+    return date.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' })
+  } catch (e) { return '--:--' }
+}
+
+const isAlreadyBooked = (sessionId) => {
+  return myBookings.value.some(b => b.session_id === sessionId && b.status !== 'Cancel')
+}
+
 const handleBooking = async (sessionId) => {
-  if (!sessionId || isAlreadyBooked(sessionId)) return
+  if (loadingBooking.value) return
   
   loadingBooking.value = true
   try {
-    // Sesuai readme: POST /api/bookings
     await api.post('/bookings', { session_id: sessionId })
-    alert("Booking Berhasil! Cek jadwalmu di My Bookings.")
-    
-    // Update local state agar tombol langsung berubah
-    myBookedIds.value.push(sessionId)
-    
-    router.push('/dashboard/my-bookings')
+    alert('Booking berhasil!')
+    await fetchData() // Refresh data setelah booking
   } catch (err) {
-    const msg = err.response?.data?.message || "Gagal melakukan booking."
-    alert(msg)
+    console.error("Booking error:", err)
+    alert(err.response?.data?.message || 'Gagal melakukan booking')
   } finally {
     loadingBooking.value = false
   }
 }
 
-const formatTime = (dateStr) => {
-  if (!dateStr) return '--:--'
-  return new Date(dateStr).toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' })
-}
-
-onMounted(() => {
-  fetchSessions()
-  fetchUserBookings()
-})
+onMounted(fetchData)
 </script>
 
 <style scoped>
@@ -193,3 +196,4 @@ onMounted(() => {
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 </style>
+
