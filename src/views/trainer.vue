@@ -1,10 +1,3 @@
-<script setup>
-import { useTrainerStore } from '../stores/trainer'
-
-const store = useTrainerStore()
-const trainers = store.trainers
-</script>
-
 <template>
         <!-- ================= HERO ================= -->
     <section class="relative h-[60vh] flex items-center justify-center text-center text-white">
@@ -73,7 +66,7 @@ const trainers = store.trainers
 </section>
 
     <!-- ===== TITLE ===== -->
-    <section class="pt-32 pb-16 text-center">
+    <section class="pt-28 pb-16 text-center">
       <h1 class="text-4xl font-bold">
         Temukan <span class="text-green-400">Personal Trainer</span> terbaik untukmu
       </h1>
@@ -86,46 +79,100 @@ const trainers = store.trainers
     <section class="pb-20">
       <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-3 gap-8">
 
-        <!-- CARD -->
-        <div 
-          v-for="trainer in trainers" 
-          :key="trainer.id"
-          class="bg-zinc-900 rounded-lg overflow-hidden group hover:scale-105 transition"
-        >
+    <!-- CARD 1 -->
+    <div class="bg-zinc-900 rounded-xl overflow-hidden 
+                group hover:scale-105 transition duration-300 shadow-lg">
 
-          <!-- IMAGE -->
-          <div class="overflow-hidden">
-            <img 
-              :src="trainer.img"
-              class="w-full h-64 object-cover group-hover:scale-110 transition duration-500"
-            />
-          </div>
+      <div class="overflow-hidden">
+        <img 
+          src="/src/assets/trainer-2.jpeg"
+          class="w-full h-64 object-cover group-hover:scale-110 transition duration-500 " style="object-position: 50% 20%;"
+        />
+      </div>
 
-          <!-- CONTENT -->
-          <div class="p-5 text-center">
+      <div class="p-5 text-center">
+        <h3 class="text-lg font-semibold pb-2">Fadhel Setiawan</h3>
+        <p class="text-green-400 text-sm mb-4">Strength Coach</p>
+      </div>
+    </div>
 
-            <h3 class="text-lg font-semibold">
-              {{ trainer.name }}
-            </h3>
+    <!-- CARD 2 -->
+    <div class="bg-zinc-900 rounded-xl overflow-hidden 
+                group hover:scale-105 transition duration-300 shadow-lg">
 
-            <p class="text-green-400 text-sm mb-4">
-              {{ trainer.role }}
-            </p>
+      <div class="overflow-hidden">
+        <img 
+          src="/src/assets/trainer-1.jpeg"
+          class="w-full h-64 object-cover group-hover:scale-110 transition duration-500 object-top"
+        />
+      </div>
 
-            <router-link
-            :to="`/trainer/${trainer.id}`"
-              class="px-4 py-2 border border-green-400 text-green-400 
-                     rounded-full text-sm hover:bg-green-400 hover:text-black transition"
-            >
-              View Profile
-            </router-link>
+      <div class="p-5 text-center">
+        <h3 class="text-lg font-semibold pb-2">M.Arif Rachman</h3>
+        <p class="text-green-400 text-sm mb-4">lose weight</p>
+      </div>
+    </div>
 
-          </div>
+    <!-- CARD 3 -->
+    <div class="bg-zinc-900 rounded-xl overflow-hidden 
+                group hover:scale-105 transition duration-300 shadow-lg">
 
-        </div>
+      <div class="overflow-hidden">
+        <img 
+          src="/src/assets/trainer-3.jpeg"
+          class="w-full h-64 object-cover group-hover:scale-110 transition duration-500"
+        />
+      </div>
+
+      <div class="p-5 text-center">
+        <h3 class="text-lg font-semibold pb-2">Gusti Caesar Yuliawan</h3>
+        <p class="text-green-400 text-sm mb-4">Yoga Specialist</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== JOIN NOW ===== -->
+<section class="pt-20 pb-16 text-center ">
+  <div class="max-w-6xl mx-auto px-6">
+
+    <div class="relative rounded-2xl overflow-hidden h-[220px]">
+
+      <!-- BACKGROUND -->
+      <div 
+        class="absolute inset-0 bg-cover bg-center transition duration-500 hover:scale-105"
+        style="background-image: url('/src/assets/conten-traine-2.jpg')">
+      </div>
+
+      <!-- OVERLAY -->
+      <div class="absolute inset-0 bg-black/70"></div>
+
+      <!-- CONTENT -->
+      <div class="relative z-10 flex flex-col items-center justify-center h-full text-center text-white">
+
+        <p class="text-xs text-gray-300 mb-1 uppercase tracking-widest">
+          Join Now
+        </p>
+
+        <h2 class="text-xl md:text-2xl font-bold mb-6">
+          Mulai perjalanan fitness kamu sekarang
+        </h2>
+
+        <router-link
+        to="/login"
+        class="bg-[#03C04A] text-white px-6 py-2 rounded-full text-sm font-semibold
+              transition duration-300 
+              hover:scale-105 hover:shadow-lg active:scale-95">
+        Mulai Sekarang
+      </router-link>
 
       </div>
-    </section>
+
+    </div>
+
+  </div>
+</section>
 
   </div>
 </template>

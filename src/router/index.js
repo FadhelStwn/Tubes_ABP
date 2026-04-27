@@ -5,7 +5,6 @@ import About from '../views/About.vue'
 import Trainer from '../views/Trainer.vue'
 import Login from '../views/LoginView.vue'
 import Register from '../views/register.vue'
-import TrainerDetail from '../views/TrainerDetail.vue'
 
 // Dashboard views
 import DashboardView from '../views/dashboard/DashboardView.vue'
@@ -25,7 +24,6 @@ const routes = [
   { path: '/trainer', component: Trainer },
   { path: '/login', component: Login},
   { path: '/register', component: Register},
-  { path: '/trainer/:id', component: TrainerDetail },
 
   // Dashboard routes
   { path: '/dashboard', component: DashboardView },
