@@ -5,7 +5,6 @@
       <p class="text-gray-500 text-[10px] font-bold uppercase tracking-widest mt-1">
         Manajemen data peserta berdasarkan riwayat booking gym
       </p>
-      <pre class="text-white text-[10px]">{{ bookers }}</pre>
     </header>
 
     <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">

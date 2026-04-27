@@ -2,7 +2,7 @@
   <div class="flex min-h-screen bg-[#0a0b10]">
     <DashboardSidebar />
 
-    <main class="flex-grow p-8 text-white font-sans">
+    <main class="flex-grow p-8 text-white overflow-y-auto">
       <div class="max-w-5xl">
         
         <div class="bg-[#161920] rounded-[2rem] p-8 border border-gray-900 mb-8 relative overflow-hidden">

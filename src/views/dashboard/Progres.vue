@@ -2,7 +2,7 @@
   <div class="flex min-h-screen bg-[#0a0a0a]">
     <DashboardSidebar class="fixed inset-y-0 left-0 z-50" />
 
-    <main class="flex-1 ml-64 min-h-screen">
+    <main class="flex-grow p-8 text-white overflow-y-auto">
       <div class="p-8 lg:p-12 max-w-6xl mx-auto space-y-10">
         
         <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">

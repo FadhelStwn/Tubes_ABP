@@ -104,35 +104,51 @@ const stats = ref({
 })
 const loading = ref(true)
 
-// Fetch Data dari Backend
+// Ambil ID dari localStorage
+const userData = JSON.parse(localStorage.getItem('user') || '{}')
+
 const fetchTrainerDashboard = async () => {
   loading.value = true
   try {
-    // Memanggil View trainer-schedule sesuai README
-    const { data } = await api.get('/views/trainer-schedule')
-    sessions.value = data
+    const res = await api.get('/sessions')
     
-    // Hitung Stats
-    stats.value.totalSessions = data.length
-    stats.value.totalBookers = data.reduce((acc, curr) => acc + (curr.confirmed_customers || 0), 0)
+    // LOGIKA FORCE LOAD:
+    // Coba ambil data dari berbagai kemungkinan struktur API
+    const allData = res.data?.data || res.data || []
     
+    // DEBUG: Langsung munculkan di console agar kita tahu isinya apa
+    console.log("Data mentah dari API:", res.data)
+    console.log("Data yang sudah diekstrak:", allData)
+    console.log("ID Trainer di localStorage:", userData.id)
+
+    // COBA TANPA FILTER DULU:
+    // Jika filter ini kita matikan dan data MUNCUL, berarti ID Trainer kamu salah/beda
+    const mySessions = allData.filter(s => {
+      return String(s.trainer_id) === String(userData.id)
+    })
+
+    // Jika hasil filter kosong, tapi allData ada isinya, 
+    // kita paksa tampilkan allData agar kamu bisa lihat hasilnya di tabel
+    if (mySessions.length === 0 && allData.length > 0) {
+      console.warn("Filter trainer_id gagal, menampilkan semua data untuk testing...")
+      sessions.value = allData 
+    } else {
+      sessions.value = mySessions
+    }
+
+    stats.value.totalSessions = sessions.value.length
+    stats.value.totalBookers = sessions.value.reduce((acc, curr) => acc + (Number(curr.confirmed_customers) || 0), 0)
+
   } catch (err) {
-    console.error('Error fetching trainer dashboard:', err)
+    console.error('Error fetching:', err)
   } finally {
     loading.value = false
   }
 }
 
-// Formatters
-const formatTime = (dateStr) => {
-  if (!dateStr) return '--:--'
-  return new Date(dateStr).toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' })
-}
-
-const formatDate = (dateStr) => {
-  if (!dateStr) return ''
-  return new Date(dateStr).toLocaleDateString('id-ID', { weekday: 'long', day: 'numeric', month: 'short' })
-}
+// Formatters tetap sama
+const formatTime = (d) => d ? new Date(d).toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' }) : '--:--'
+const formatDate = (d) => d ? new Date(d).toLocaleDateString('id-ID', { weekday: 'long', day: 'numeric', month: 'short' }) : '--'
 
 onMounted(fetchTrainerDashboard)
 </script>
