@@ -42,30 +42,38 @@
             <tr v-if="loading">
               <td colspan="4" class="py-20 text-center text-green-400 font-black text-xs animate-pulse uppercase tracking-widest">Menghubungkan ke Database...</td>
             </tr>
-            <tr v-for="booker in filteredBookers" :key="booker.booking_id || booker.id" class="border-b border-gray-900/50 hover:bg-white/[0.02]">
-              <td class="py-6 px-8">
-                <div class="flex items-center gap-4">
-                  <div class="w-10 h-10 bg-green-400/10 border border-green-400/20 rounded-full flex items-center justify-center font-black text-green-400 text-xs">
-                    {{ getInitials(booker.customer_name || booker.name) }}
-                  </div>
-                  <div>
-                    <p class="text-xs font-black uppercase">{{ booker.customer_name || booker.name || 'Member' }}</p>
-                    <p class="text-[9px] text-gray-600 lowercase tracking-tighter">{{ booker.customer_email || booker.email || '-' }}</p>
-                  </div>
-                </div>
-              </td>
-              <td class="py-6 px-8">
-                <p class="text-[10px] text-gray-200 font-black uppercase italic">{{ booker.session_title || 'General Session' }}</p>
-                <p class="text-[9px] text-gray-600 font-bold mt-1 uppercase">{{ formatDate(booker.start_time || booker.created_at) }}</p>
-              </td>
-              <td class="py-6 px-8 text-center">
-                <span 
-                  :class="getStatusClass(booker.status)"
-                  class="text-[8px] px-4 py-1.5 rounded-full border font-black uppercase tracking-widest inline-block"
-                >
-                  {{ booker.status || 'Confirmed' }}
-                </span>
-              </td>
+<tr v-for="booker in filteredBookers" :key="booker.booking_id" class="border-b border-gray-900/50 hover:bg-white/[0.02]">
+  <td class="py-6 px-8">
+    <div class="flex items-center gap-4">
+      <!-- Initials: Pastikan memanggil customer_name sesuai screenshot -->
+      <div class="w-10 h-10 bg-green-400/10 border border-green-400/20 rounded-full flex items-center justify-center font-black text-green-400 text-xs">
+        {{ getInitials(booker.customer_name) }}
+      </div>
+      <div>
+        <!-- Nama Member sesuai screenshot: customer_name -->
+        <p class="text-xs font-black uppercase">{{ booker.customer_name || 'Member Unknown' }}</p>
+        <!-- Email biasanya tidak ada di view history, pastikan API mengirimkannya atau beri '-' -->
+        <p class="text-[9px] text-gray-600 lowercase tracking-tighter">{{ booker.customer_email || '-' }}</p>
+      </div>
+    </div>
+  </td>
+  
+  <td class="py-6 px-8">
+    <!-- Judul Sesi sesuai screenshot: session_title -->
+    <p class="text-[10px] text-gray-200 font-black uppercase italic">{{ booker.session_title || 'General Session' }}</p>
+    <!-- Waktu sesuai screenshot: start_time -->
+    <p class="text-[9px] text-gray-600 font-bold mt-1 uppercase">{{ formatDate(booker.start_time) }}</p>
+  </td>
+
+  <td class="py-6 px-8 text-center">
+    <!-- Status sesuai screenshot: status -->
+    <span 
+      :class="getStatusClass(booker.status)"
+      class="text-[8px] px-4 py-1.5 rounded-full border font-black uppercase tracking-widest inline-block"
+    >
+      {{ booker.status || 'Pending' }}
+    </span>
+  </td>
               <td class="py-6 px-8 text-center">
                 <button 
                   @click="openModal(booker)"
@@ -107,8 +115,13 @@ const showModal = ref(false)
 const selectedMember = ref(null)
 const note = ref('')
 
-const filteredBookers = computed(() => bookers.value.filter(b => (b.customer_name || b.name || '').toLowerCase().includes(searchQuery.value.toLowerCase())))
-const confirmedCount = computed(() => bookers.value.filter(b => b.status === 'Confirmed' || !b.status).length)
+// Ambil data user yang login untuk filter internal
+const userData = JSON.parse(localStorage.getItem('user') || '{}')
+
+// 1. PERBAIKAN FILTER: Gunakan display_name agar sinkron dengan hasil mapping
+const filteredBookers = computed(() => bookers.value)
+
+const confirmedCount = computed(() => bookers.value.filter(b => b.status === 'Confirmed' || b.status === 'Pending').length)
 
 const getInitials = (n) => n ? n.split(' ').map(i => i[0]).join('').toUpperCase().slice(0, 2) : 'M'
 const formatDate = (d) => d ? new Date(d).toLocaleDateString('id-ID', {day:'numeric', month:'short'}) : '--'
@@ -119,36 +132,40 @@ const getStatusClass = (status) => {
   return 'bg-green-400/10 text-green-400 border-green-400/20'
 }
 
-// STRATEGI ANTI-403: Coba semua pintu yang mungkin dibuka backend
 const fetchBookers = async () => {
   loading.value = true
-  // Daftar pintu yang kita coba ketok
-  const endpoints = ['/views/session-participants', '/views/customer-booking-history', '/booking']
-  
-  for (const url of endpoints) {
-    try {
-      const res = await api.get(url)
-      const rawData = res.data.data || res.data || []
-      
-      if (Array.isArray(rawData)) {
-        // MAPPING CERDAS: Nyari nama di segala jenis kolom
-        bookers.value = rawData.map(item => ({
-          ...item,
-          // Dia bakal nyari customer_name, kalau gak ada cari member_name, dst.
-          display_name: item.customer_name || item.member_name || item.name || item.username || 'Member Unknown',
-          display_session: item.session_title || item.title || item.session_name || 'Latihan Umum'
-        }))
-        loading.value = false
-        return 
-      }
-    } catch (err) {
-      console.warn(`Pintu ${url} ditolak, nyoba jalur lain...`)
-    }
-  }
-  loading.value = false
-}
+  try {
+    // 1. Langsung tembak ke pintu yang sudah pasti ada datanya di screenshot phpMyAdmin kamu
+    const res = await api.get('/views/customer-booking-history')
+    
+    // 2. DEBUG KERAS: Lihat struktur asli dari backend di console F12
+    console.log("Respon API mentah:", res)
 
-const openModal = (m) => { selectedMember.value = m; note.value = ''; showModal.value = true }
+    // Mencoba berbagai kemungkinan letak array (res.data, res.data.data, atau res.data.data.data)
+    const rawData = res.data?.data?.data || res.data?.data || res.data || []
+    
+    if (Array.isArray(rawData)) {
+      // 3. JANGAN DIFILTER DULU. Kita pastikan data masuk ke tabel.
+      bookers.value = rawData.map(item => ({
+        ...item,
+        // Gunakan nama kolom persis seperti di phpMyAdmin
+        display_name: item.customer_name || 'No Name',
+        display_session: item.session_title || 'No Session',
+        status: item.status || 'Confirmed'
+      }))
+      
+      console.log("Data yang berhasil di-map ke tabel:", bookers.value)
+    } else {
+      console.error("API tidak mengembalikan Array. Cek format backend kamu.")
+    }
+
+  } catch (err) {
+    console.error("Gagal total memanggil API:", err)
+    // Cek apakah error 401 (Unauthorized) atau 404 (Not Found)
+  } finally {
+    loading.value = false
+  }
+}
 
 const saveProgress = async () => {
   try {

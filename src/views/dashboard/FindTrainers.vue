@@ -80,8 +80,8 @@
             </div>
           </div>
 
-          <button @click="handleBooking(session.session_id)"
-                  :disabled="loadingBooking || isAlreadyBooked(session.session_id)"
+          <button @click="handleBooking(session.session_id || session.id)"
+                  :disabled="loadingBooking || isAlreadyBooked(session.session_id || session.id)"
                   class="w-full py-4 font-black uppercase text-xs tracking-widest rounded-2xl transition-all"
                   :class="isAlreadyBooked(session.session_id) 
                           ? 'bg-gray-800 text-gray-500 cursor-not-allowed border border-gray-700' 
@@ -117,28 +117,25 @@ const selectedLocation = ref('')
 const fetchData = async () => {
   loading.value = true
   try {
+    // 1. Ambil Sesi (Utama)
     const resSessions = await api.get('/sessions')
-    
-    // DEBUG: Cek di Console (F12) untuk melihat isi asli dari database
-    console.log("Data dari Backend:", resSessions.data)
-    
-    // Pastikan data adalah Array
-    if (resSessions.data && Array.isArray(resSessions.data)) {
-      sessions.value = resSessions.data
-    } else if (resSessions.data.data && Array.isArray(resSessions.data.data)) {
-      // Beberapa backend membungkus array di dalam objek { data: [] }
-      sessions.value = resSessions.data.data
-    } else {
-      sessions.value = []
+    const sessionData = resSessions.data?.data || resSessions.data || []
+    sessions.value = Array.isArray(sessionData) ? sessionData : []
+
+    // 2. Ambil Riwayat Booking (Bungkus dengan try-catch sendiri agar kalau error gak ngerusak Sesi)
+    try {
+      const resMyBookings = await api.get('/views/customer-booking-history')
+      const bookingData = resMyBookings.data?.data || resMyBookings.data || []
+      myBookings.value = Array.isArray(bookingData) ? bookingData : []
+    } catch (bookingErr) {
+      console.warn("Gagal ambil history booking, tapi sesi tetap tampil:", bookingErr)
+      myBookings.value = []
     }
 
-    // Ambil riwayat booking (opsional)
-    const resMyBookings = await api.get('/views/customer-booking-history')
-    myBookings.value = resMyBookings.data || []
-    
   } catch (err) {
-    console.error('Fetch error:', err)
+    console.error('Fetch error utama:', err)
   } finally {
+    // Pastikan loading berhenti apa pun yang terjadi
     loading.value = false
   }
 }
