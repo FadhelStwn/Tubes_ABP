@@ -38,9 +38,7 @@ import aboutImg from '../assets/about-conten.jpg'
         </p>
 
         <p class="text-gray-400 mt-4 max-w-3xl mx-auto leading-relaxed">
-          <span class="text-green-400 font-semibold">GymBuddy</span> hadir untuk menghubungkan
-          kamu dengan trainer profesional dan partner latihan yang tepat, agar perjalanan fitness
-          kamu tetap konsisten dan menyenangkan.
+          <span class="text-green-400 font-semibold">GymBuddy</span> hadir sebagai platform manajemen fitness digital yang menjembatani kesenjangan antara pelatih profesional dan penggiat olahraga. Kami menyediakan ekosistem terpadu untuk pencarian trainer hingga penjadwalan sesi latihan dalam satu genggaman.
         </p>
 
       </div>
@@ -99,6 +97,19 @@ import aboutImg from '../assets/about-conten.jpg'
           Fitur pencarian kami dirancang untuk memberikan solusi untuk kamu yang malu memulai olahraga sendirian dan bisa mendukung satu sama lain.
         </p>
 
+      </div>
+    </section>
+
+    <section class="py-20">
+      <div class="max-w-6xl mx-auto px-6 text-center">
+
+        <h2 class="text-3xl font-bold mb-6">
+          The <span class="text-green-400">Buddy System</span> Booking
+        </h2>
+
+        <p class="text-gray-400 max-w-3xl mx-auto mb-4">
+          Sistem booking kami terintegrasi langsung dengan jadwal trainer, memastikan kamu mendapatkan slot latihan tanpa risiko double-booking. Setiap transaksi dan riwayat latihan tercatat secara transparan di dashboard pribadi kamu.
+        </p>
       </div>
     </section>
 
