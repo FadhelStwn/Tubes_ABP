@@ -26,12 +26,18 @@
             Temukan partner, jaga konsistensi.
           </p>
 
-          <router-link 
-          to="/login"
-          class="mt-6 inline-block bg-green-500 px-6 py-3 rounded-full
-          font-semibold hover:bg-green-600 transition">
-          Gabung Sekarang
-          </router-link>
+          <RouterLink
+            to="/login"
+            class="mt-6 inline-block
+                  bg-green-500 px-6 py-3 rounded-full
+                  font-semibold text-white
+                  shadow-[0_0_25px_rgba(34,197,94,0.6)]
+                  transition-all duration-300
+                  hover:scale-110
+                  hover:shadow-[0_0_40px_rgba(34,197,94,0.9)]"
+          >
+            Gabung Sekarang
+          </RouterLink>
 
         </div>
 

@@ -25,93 +25,192 @@ import aboutImg from '../assets/about-conten.jpg'
     </section>
 
     <!-- ================= MASALAH & SOLUSI ================= -->
-    <section class="py-20">
-      <div class="max-w-6xl mx-auto px-6 text-center">
+      <section class="bg-black text-white py-24">
+    <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
 
-        <h2 class="text-3xl font-bold mb-6">
-          Why <span class="text-green-400">GymBuddy</span> Exists
+      <!-- TEXT -->
+      <div>
+        <h2 class="text-3xl font-bold mb-2">
+          Hi, Kenalin Kita, <span class="text-green-400">GYMBUDDY</span>!
         </h2>
-
-        <p class="text-gray-400 max-w-3xl mx-auto leading-relaxed">
-          Banyak orang memulai gym dengan semangat tinggi, tetapi berhenti di tengah jalan.
-          Tanpa arahan yang tepat atau partner latihan, motivasi perlahan menghilang.
+        <p class="text-gray-400  mb-4">
+          Kami <span class="text-green-400 font-semibold">GymBuddy</span> hadir sebagai platform manajemen fitness digital yang menjembatani kesenjangan antara pelatih berkompeten dan penggiat olahraga. Kami menyediakan ekosistem terpadu untuk pencarian trainer hingga penjadwalan sesi latihan dalam satu genggaman.
         </p>
 
-        <p class="text-gray-400 mt-4 max-w-3xl mx-auto leading-relaxed">
-          <span class="text-green-400 font-semibold">GymBuddy</span> hadir sebagai platform manajemen fitness digital yang menjembatani kesenjangan antara pelatih profesional dan penggiat olahraga. Kami menyediakan ekosistem terpadu untuk pencarian trainer hingga penjadwalan sesi latihan dalam satu genggaman.
+        <p class="text-gray-400">
+          Kami membantu kamu tetap konsisten olahraga dengan trainer dan program latihan yang tepat. Temukan partner latihan, atur jadwal, dan capai tujuan fitness kamu bersama GymBuddy!
         </p>
-
       </div>
-    </section>
 
-    <!-- ================= BOOKING SYSTEM ================= -->
-    <section class="bg-zinc-900 py-20">
-      <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+      <!-- IMAGE -->
+      <div class="relative">
+        <img
+          src="/src/assets/about-conten-3.jpg"
+          class="rounded-lg"
+        />
 
-        <!-- TEXT -->
-        <div>
-          <h2 class="text-3xl font-bold mb-4">
-            Easy & Flexible Booking
-          </h2>
+        <!-- FRAME EFFECT -->
+        <div class="absolute -top-4 -right-4 w-full h-full border-4 border-green-400"></div>
+      </div>
 
-          <p class="text-gray-400 mb-4">
-            Semua trainer di GymBuddy telah melalui proses verifikasi dan memiliki
-            sertifikasi profesional untuk memastikan kualitas latihan terbaik.
-          </p>
+    </div>
+  </section>
 
-          <p class="text-gray-400 mb-6">
-            Kamu bisa memilih jadwal, trainer, dan program latihan yang sesuai
-            dengan gaya hidupmu — fleksibel dan tanpa ribet.
-          </p>
+  <section class="py-20 bg-zinc-900">
+  <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-16">
+    
+    <!-- Bagian Visi -->
+    <div>
+      <h2 class="text-green-400 text-sm font-bold uppercase tracking-widest mb-2">Visi Kami</h2>
+      <p class="text-2xl md:text-3xl font-semibold text-white leading-tight">
+        Menjadi jembatan utama menuju gaya hidup sehat yang <span class="text-green-400">terkoneksi dan berkelanjutan.</span>
+      </p>
+    </div>
 
-          <ul class="space-y-2 text-sm text-gray-300">
-            <li>✔ Trainer berkompeten</li>
-            <li>✔ Jadwal fleksibel</li>
-            <li>✔ Booking mudah</li>
-          </ul>
+    <!-- Bagian Misi -->
+    <div>
+      <h2 class="text-green-400 text-sm font-bold uppercase tracking-widest mb-4">Misi Kami</h2>
+      <ul class="space-y-4 text-gray-400">
+        <li class="flex items-start">
+          <span class="text-green-400 mr-2">01.</span>
+          Memberdayakan pelatih lokal dengan teknologi manajemen.
+        </li>
+        <li class="flex items-start">
+          <span class="text-green-400 mr-2">02.</span>
+          Menyediakan alat bantu digital bagi trainer untuk memaksimalkan jadwal dan produktivitas sesi.
+        </li>
+        <li class="flex items-start">
+          <span class="text-green-400 mr-2">03.</span>
+          Menyederhanakan proses booking untuk efisiensi waktu pengguna.
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+    <!-- ================= CARD ================= -->
+  <section class="bg-black text-white py-20 fade-up" style="animation-delay: 0.1s">
+  <div class="max-w-6xl mx-auto px-6 text-center">
+
+    <!-- TITLE -->
+    <h2 class="text-3xl font-bold mb-4 fade-up" style="animation-delay: 0.2s">
+      Kenapa <span class="text-green-400">GymBuddy</span>?
+    </h2>
+
+    <p class="text-gray-400 max-w-2xl mx-auto mb-12">
+      Akses ke pelatih berpengalaman kini ada dalam genggaman Anda.
+    </p>
+
+    <!-- GRID -->
+    <div class="grid md:grid-cols-3 gap-8 text-left">
+
+      <!-- CARD 1 -->
+      <div class="bg-zinc-900 p-6 rounded-2xl border border-white/10 
+                  hover:border-green-400/30 transition group">
+
+        <div class="w-14 h-14 bg-green-400/10 rounded-full flex items-center justify-center mb-4">
+          <span class="material-icons text-green-400 text-3xl">
+            fitness_center
+          </span>
         </div>
 
-        <!-- IMAGE -->
-        <div>
-          <img :src="aboutImg"
-            class="rounded-lg brightness-50"/>
+        <h3 class="font-semibold text-lg mb-2">
+          Trainer Berpengalaman
+        </h3>
+
+        <p class="text-gray-400 text-sm mb-4 leading-relaxed">
+          Akses ke pelatih tanpa ribet administrasi. 
+          Pilih trainer sesuai target seperti Weight Loss, Strength, atau Hypertrophy.
+        </p>
+      </div>
+
+      <!-- CARD 2 -->
+      <div class="bg-zinc-900 p-6 rounded-2xl border border-white/10 
+                  hover:border-green-400/30 transition group">
+
+        <div class="w-14 h-14 bg-green-400/10 rounded-full flex items-center justify-center mb-4">
+          <span class="material-icons text-green-400 text-3xl">
+            schedule
+          </span>
         </div>
 
+        <h3 class="font-semibold text-lg mb-2">
+          Fleksibel & Efisien
+        </h3>
+
+        <p class="text-gray-400 text-sm mb-4 leading-relaxed">
+          Atur jadwal latihan sesuai waktumu. Tidak perlu antre atau menyesuaikan dengan gym.
+        </p>
       </div>
-    </section>
 
-    <!-- ================= COMMUNITY ================= -->
-    <section class="py-20">
-      <div class="max-w-6xl mx-auto px-6 text-center">
+      <!-- CARD 3 -->
+      <div class="bg-zinc-900 p-6 rounded-2xl border border-white/10 
+                  hover:border-green-400/30 transition group">
 
-        <h2 class="text-3xl font-bold mb-6">
-          The <span class="text-green-400">Buddy System</span>
+        <div class="w-14 h-14 bg-green-400/10 rounded-full flex items-center justify-center mb-4">
+          <span class="material-icons text-green-400 text-3xl">
+            mobile_friendly
+          </span>
+        </div>
+
+        <h3 class="font-semibold text-lg mb-2">
+          Booking Mudah
+        </h3>
+
+        <p class="text-gray-400 text-sm mb-4 leading-relaxed">
+          Semua dilakukan langsung dari aplikasi. Proses cepat, simpel, dan tanpa ribet.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== JOIN NOW ===== -->
+<section class="pt-20 pb-16 text-center ">
+  <div class="max-w-6xl mx-auto px-6">
+
+    <div class="relative rounded-2xl overflow-hidden h-[220px]">
+
+      <!-- BACKGROUND -->
+      <div 
+        class="absolute inset-0 bg-cover bg-center transition duration-500 hover:scale-105"
+        style="background-image: url('/src/assets/conten-traine-2.jpg')">
+      </div>
+
+      <!-- OVERLAY -->
+      <div class="absolute inset-0 bg-black/70"></div>
+
+      <!-- CONTENT -->
+      <div class="relative z-10 flex flex-col items-center justify-center h-full text-center text-white">
+
+        <p class="text-xs text-gray-300 mb-1 uppercase tracking-widest">
+          Join Now
+        </p>
+
+        <h2 class="text-xl md:text-2xl font-bold mb-6">
+          Mulai perjalanan fitness kamu sekarang
         </h2>
-
-        <p class="text-gray-400 max-w-3xl mx-auto mb-4">
-          GymBuddy bukan hanya tentang latihan, tetapi tentang membangun koneksi.
-          Kami percaya bahwa latihan bersama akan menciptakan motivasi yang lebih kuat.
-        </p>
-
-        <p class="text-gray-400 max-w-3xl mx-auto">
-          Fitur pencarian kami dirancang untuk memberikan solusi untuk kamu yang malu memulai olahraga sendirian dan bisa mendukung satu sama lain.
-        </p>
-
+        
+        <RouterLink
+            to="/login"
+            class="mt-6 inline-block
+                  bg-green-500 px-6 py-3 rounded-full
+                  font-semibold text-white
+                  shadow-[0_0_25px_rgba(34,197,94,0.6)]
+                  transition-all duration-300
+                  hover:scale-110
+                  hover:shadow-[0_0_40px_rgba(34,197,94,0.9)]"
+          >
+            Gabung Sekarang
+          </RouterLink>
       </div>
-    </section>
 
-    <section class="py-20">
-      <div class="max-w-6xl mx-auto px-6 text-center">
+    </div>
 
-        <h2 class="text-3xl font-bold mb-6">
-          The <span class="text-green-400">Buddy System</span> Booking
-        </h2>
-
-        <p class="text-gray-400 max-w-3xl mx-auto mb-4">
-          Sistem booking kami terintegrasi langsung dengan jadwal trainer, memastikan kamu mendapatkan slot latihan tanpa risiko double-booking. Setiap transaksi dan riwayat latihan tercatat secara transparan di dashboard pribadi kamu.
-        </p>
-      </div>
-    </section>
-
+  </div>
+</section>
   </div>
 </template>

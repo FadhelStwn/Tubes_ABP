@@ -109,7 +109,7 @@
 
       <div class="p-5 text-center">
         <h3 class="text-lg font-semibold pb-2">M.Arif Rachman</h3>
-        <p class="text-green-400 text-sm mb-4">lose weight</p>
+        <p class="text-green-400 text-sm mb-4">Lose Weight Coach</p>
       </div>
     </div>
 
@@ -126,7 +126,7 @@
 
       <div class="p-5 text-center">
         <h3 class="text-lg font-semibold pb-2">Gusti Caesar Yuliawan</h3>
-        <p class="text-green-400 text-sm mb-4">Yoga Specialist</p>
+        <p class="text-green-400 text-sm mb-4">Hypertrophy Coach</p>
       </div>
     </div>
 
@@ -159,13 +159,18 @@
           Mulai perjalanan fitness kamu sekarang
         </h2>
 
-        <router-link
-        to="/login"
-        class="bg-[#03C04A] text-white px-6 py-2 rounded-full text-sm font-semibold
-              transition duration-300 
-              hover:scale-105 hover:shadow-lg active:scale-95">
-        Mulai Sekarang
-      </router-link>
+        <RouterLink
+            to="/login"
+            class="mt-6 inline-block
+                  bg-green-500 px-6 py-3 rounded-full
+                  font-semibold text-white
+                  shadow-[0_0_25px_rgba(34,197,94,0.6)]
+                  transition-all duration-300
+                  hover:scale-110
+                  hover:shadow-[0_0_40px_rgba(34,197,94,0.9)]"
+          >
+            Gabung Sekarang
+          </RouterLink>
 
       </div>
 

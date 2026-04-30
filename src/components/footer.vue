@@ -12,7 +12,7 @@
             GYMBUDDY
           </h2>
           <p class="text-sm">
-            Temukan partner gym dan tingkatkan konsistensi latihan kamu.
+            Temukan pelatih gym dan tingkatkan konsistensi latihan kamu.
           </p>
         </div>
 
@@ -41,7 +41,7 @@
           <h3 class="text-white font-semibold mb-4">Contact</h3>
           <ul class="space-y-2 text-sm">
             <li>Email: gymbuddy@email.com</li>
-            <li>Phone: +62 812 3456 7890</li>
+            <li>Phone: +62 895 6064 9520</li>
           </ul>
         </div>
 

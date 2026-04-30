@@ -72,7 +72,7 @@
             </div>
 
             <button type="submit" :disabled="loading"
-                    class="w-full bg-green-500 text-black py-4 rounded-full font-bold text-lg hover:bg-green-600 shadow-xl shadow-green-500/20 transition-all mt-4">
+                    class="w-full bg-green-500 text-white py-4 rounded-full font-bold text-lg hover:bg-green-600 shadow-xl shadow-green-500/20 transition-all mt-4">
               {{ loading ? 'Memproses...' : 'Buat Akun' }}
             </button>
           </form>
